@@ -1,6 +1,8 @@
 function MainPage(){
     return(
-        <div></div>
+        <div>
+            <p>hi there</p>
+        </div>
     )
 }
 
