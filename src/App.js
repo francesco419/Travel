@@ -1,12 +1,18 @@
 import './App.css';
+import MainPage from './MainPage';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <div>
-        <p>공공데이터를 사용한 여행정보 사이트</p>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={`${process.env.PUBLIC_URL}/`} element={<MainPage/>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
