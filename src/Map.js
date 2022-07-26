@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Map(){
     return(
         <div>
@@ -32,6 +34,7 @@ function Map(){
             <p>국가별 중요 - 환율 / 여행경보 / 언어 / 핫스팟</p>
             <p>각 나라별로 최소 3곳 스팟 정보 - 이름 / 위치 / 정보 / 랜드마크</p>
             <p>전체이미지 - 대륙 - 나라 - 스팟</p>
+            <Link to="/Introduction">Introduction</Link>
 
         </div>
     )

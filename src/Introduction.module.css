@@ -1,0 +1,13 @@
+.container{
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    overflow: scroll;
+}
+
+.intro1{
+    height:100vh;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
