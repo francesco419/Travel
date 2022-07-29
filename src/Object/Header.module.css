@@ -1,0 +1,20 @@
+.container{
+    width: 100%;
+}
+
+.fullbar{
+    display: flex;
+}
+
+.menu{
+    margin: 0 20px;
+    color:red;
+}
+
+.st:hover~.te{
+    display: block;
+}
+
+.te{
+    display: none;
+}

@@ -1,6 +1,6 @@
 import './App.css';
-import MainPage from './MainPage';
-import Introduction from './Introduction';
+import MainPage from './Page/MainPage';
+import Introduction from './Page/Introduction';
 import {
   BrowserRouter,
   Routes,
@@ -11,8 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={`/Introduction`} element={<Introduction/>} />
-        <Route path={`${process.env.PUBLIC_URL}/`} element={<MainPage/>} />
+        <Route path={`/MainPage`} element={<MainPage/>} />
+        <Route path={`${process.env.PUBLIC_URL}/`} element={<Introduction/>} />
       </Routes>
     </BrowserRouter>
   );

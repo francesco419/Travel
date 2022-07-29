@@ -1,0 +1,28 @@
+.container{
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.intro1{
+    height:100vh;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skip{
+    width: 30px;
+    height:30px;
+    position: fixed;
+    bottom:15px;
+    left: 50%;
+    color:#ffffff;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.skip:hover{
+    font-weight: bold;
+}
