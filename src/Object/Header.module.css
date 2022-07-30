@@ -4,17 +4,14 @@
 
 .fullbar{
     display: flex;
+    background-color: violet;
 }
 
 .menu{
-    margin: 0 20px;
-    color:red;
+    display: flex;
+    list-style: none;
 }
 
-.st:hover~.te{
-    display: block;
-}
-
-.te{
-    display: none;
+.menu li{
+    padding: 8px 15px;
 }
