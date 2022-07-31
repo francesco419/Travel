@@ -1,0 +1,11 @@
+.container{
+    height: 100%;
+}
+
+.visualbox{
+    width: 1000px;
+    height: 700px;
+    margin: 0 auto;
+    border: 5px solid grey;
+    border-radius: 10%;
+}
