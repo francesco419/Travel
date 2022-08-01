@@ -5,22 +5,68 @@ import { ReactComponent as Europe } from '../image/151641.svg';
 import { ReactComponent as Austr } from '../image/151644.svg';
 import { ReactComponent as America } from '../image/311014.svg';
 import { ReactComponent as Asia } from '../image/151642.svg';
+import { useState } from "react";
 
 function MainPage(){
+    const [ContinentNum,setContinentNum]=useState(1);
+    const switchNum=(state)=>{
+        if(state){
+            if(ContinentNum===5){
+                setContinentNum(1);
+            }
+            else{
+                setContinentNum(ContinentNum+1);
+            }
+        }else{
+            if(ContinentNum===1){
+                setContinentNum(5);
+            }
+            else{
+                setContinentNum(ContinentNum-1);
+            }
+        }
+        console.log(ContinentNum);
+    }
     return(
         <div>
             <Map/>
             <div className={styles.container}>
                 <div className={styles.visualbox}>
-                    <Africa width="250px" height="250px"/>
-                    <Europe width="250px" height="250px"/>
-                    <Asia width="250px" height="250px"/>
-                    <America width="250px" height="250px"/>
-                    <Austr width="250px" height="250px"/>
+                    <button onClick={()=>{
+                        if(ContinentNum===6){
+                            setContinentNum(1);
+                        }else{
+                            setContinentNum(6);
+                        }
+                    }} className={styles.swapView}>전체보기</button>
+                    <button className={styles.continentButton} style={{marginLeft:"15px"}} onClick={()=>switchNum(false)}>&lt;&lt;</button>
+                    <div className={styles.continent}>
+                        <ContinentSVG num={ContinentNum}/>
+                    </div>
+                    <button className={styles.continentButton} style={{marginRight:"15px"}}  onClick={()=>switchNum(true)}>&gt;&gt;</button>
                 </div>
             </div>
         </div>
     )
+}
+
+function ContinentSVG({num}){
+    switch(num){
+        case 1: return <Africa/>
+        case 2: return <Europe/>
+        case 3: return <Austr/>
+        case 4: return <America/>
+        case 5: return <Asia/>
+        case 6: return (
+            <div className={styles.viewAllbox}>
+                <a href="">Asia</a>
+                <a href="">Europe</a>
+                <a href="">Oceania</a>
+                <a href="">America</a>
+                <a href="">Africa</a>
+            </div>
+        )
+    }
 }
 
 /*<p>외교부_국가∙지역별 여행경보 https://www.data.go.kr/iim/api/selectAPIAcountView.do</p>

@@ -3,9 +3,44 @@
 }
 
 .visualbox{
+    display: flex;
+    position: relative;
     width: 1000px;
     height: 700px;
     margin: 0 auto;
     border: 5px solid grey;
     border-radius: 10%;
+    overflow: visible;
+    align-items: center;
+}
+
+.continentButton{
+    width: 30px;
+    height: 30px;
+    border: 0;
+    background-color:#ffffff00;
+}
+.continent{
+    height:500px;
+    margin:0 auto;
+}
+
+.swapView{
+    position: absolute;
+    top:20px;
+    right:50px;
+    border: 0;
+    background-color:#ffffff00
+}
+
+.swapView:hover{
+    color:violet;
+}
+
+.viewAllbox{
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
 }
