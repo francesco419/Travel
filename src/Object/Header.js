@@ -4,7 +4,7 @@ import {continents} from "../Component/NavItem";
 import { useState } from "react";
 import Dropdown from "../Component/Dropdown";
 
-function Map(){
+function Header(){
     const [dropdown,setDropdown] = useState(false);
     const down=()=>{
         setDropdown(true);
@@ -30,4 +30,4 @@ function Map(){
     )
 }
 
-export default Map;
+export default Header;
