@@ -1,4 +1,4 @@
-import Map from "../Object/Header";
+import Header from "../Object/Header";
 import styles from "./MainPage.module.css";
 import { ReactComponent as Africa } from '../image/28615.svg';
 import { ReactComponent as Europe } from '../image/151641.svg';
@@ -6,9 +6,13 @@ import { ReactComponent as Austr } from '../image/151644.svg';
 import { ReactComponent as America } from '../image/311014.svg';
 import { ReactComponent as Asia } from '../image/151642.svg';
 import { useState } from "react";
+import Introduction from '../Page/Introduction';
+import { Link } from "react-router-dom";
 
 function MainPage(){
-    const [ContinentNum,setContinentNum]=useState(1);
+    let SESSION = window.sessionStorage.getItem("IntroPage");
+    const [ContinentNum,setContinentNum]=useState(1),
+    [intropage,setIntropage]=useState(SESSION ? false : true);
     const switchNum=(state)=>{
         if(state){
             if(ContinentNum===5){
@@ -29,23 +33,28 @@ function MainPage(){
     }
     return(
         <div>
-            <Map/>
-            <div className={styles.container}>
-                <div className={styles.visualbox}>
-                    <button onClick={()=>{
-                        if(ContinentNum===6){
-                            setContinentNum(1);
-                        }else{
-                            setContinentNum(6);
-                        }
-                    }} className={styles.swapView}>전체보기</button>
-                    <button className={styles.continentButton} style={{marginLeft:"15px"}} onClick={()=>switchNum(false)}>&lt;&lt;</button>
-                    <div className={styles.continent}>
-                        <ContinentSVG num={ContinentNum}/>
+            {intropage ? <Introduction setIntropage={setIntropage}/> 
+            :
+            <div>
+                <Header/>
+                <div className={styles.container}>
+                    <div className={styles.visualbox}>
+                        <button onClick={()=>{
+                            if(ContinentNum===6){
+                                setContinentNum(1);
+                            }else{
+                                setContinentNum(6);
+                            }
+                        }} className={styles.swapView}>전체보기</button>
+                        <button className={styles.continentButton} style={ContinentNum===6 ? {display:"none",marginLeft:"15px"} : {marginLeft:"15px"}} onClick={()=>switchNum(false)}>&lt;&lt;</button>
+                        <div className={styles.continent}>
+                            <ContinentSVG num={ContinentNum}/>
+                        </div>
+                        <button className={styles.continentButton} style={ContinentNum===6 ? {display:"none",marginRight:"15px"} : {marginRight:"15px"}} onClick={()=>switchNum(true)}>&gt;&gt;</button>
                     </div>
-                    <button className={styles.continentButton} style={{marginRight:"15px"}}  onClick={()=>switchNum(true)}>&gt;&gt;</button>
                 </div>
             </div>
+            }
         </div>
     )
 }
@@ -59,11 +68,11 @@ function ContinentSVG({num}){
         case 5: return <Asia/>
         case 6: return (
             <div className={styles.viewAllbox}>
-                <a href="">Asia</a>
-                <a href="">Europe</a>
-                <a href="">Oceania</a>
-                <a href="">America</a>
-                <a href="">Africa</a>
+                <Link to={"/Asia"}>Asia</Link>
+                <button>Europe</button>
+                <button>Oceania</button>
+                <button>America</button>
+                <button>Africa</button>
             </div>
         )
     }

@@ -1,7 +1,10 @@
 import styles from "./Introduction.module.css";
 import { Link } from "react-router-dom";
 
-function Introduction(){
+function Introduction(props){
+    const sessionStorageSave=()=>{
+        window.sessionStorage.setItem("IntroPage",JSON.stringify(false));
+    }
     return(
         <div className={styles.container}>
             <div className={styles.intro1} style={{backgroundColor: "blue"}}>
@@ -23,7 +26,12 @@ function Introduction(){
                 <h1>감사 + 사용하러가기</h1>
                 <Link to={"/MainPage"}>메인페이지로-</Link>
             </div>
-            <Link className={styles.skip} to={"/MainPage"}>SKIP</Link>
+            <button className={styles.skip} onClick={()=>{
+                sessionStorageSave();
+                props.setIntropage(false);
+                }
+                }>SKIP
+                </button>
         </div>
     )
 }

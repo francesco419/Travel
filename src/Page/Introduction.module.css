@@ -20,7 +20,8 @@
     left: 50%;
     color:#ffffff;
     font-size: 15px;
-    text-decoration: none;
+    background-color: #00000000;
+    border: 0;
 }
 
 .skip:hover{
