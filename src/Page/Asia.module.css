@@ -1,8 +1,30 @@
 div{
-    font-size: 20px;
+    font-size: 12px;
 }
 
 a{
+    display: block;
+    font-size: 12px;
     text-decoration: none;
     color:#000000;
+}
+
+a:hover{
+    color: #00b9b9;
+}
+
+h1{
+    width: 150px;
+}
+
+.changeLang{
+    border: 0;
+    background-color: #00000000;
+    position: absolute;
+    top:5px;
+    right: 5px;
+}
+
+.changeLang:active{
+    color: #00b9b9;
 }

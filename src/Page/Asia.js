@@ -5,11 +5,14 @@ import styles from "./Asia.module.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import ReactDOM from 'react-dom'
+import "./Asia.css";
 
 
 function Asia(){
     const [engkor,setEngKor]=useState(true);
-    const sortout =(bool)=>{
+    const [CountryName,setCountryName]=useState(Country[0].listENG);
+
+    /* const sortout =(bool)=>{
         console.log(Country[0].listENG);
         const listENG = Country[0].listENG;
         let listKOR = bool ? Country[0].listENG : Country[0].listKOR;
@@ -27,15 +30,17 @@ function Asia(){
                 console.log(`${listKOR[i]}\n`);
             }
         }
-    }
-    const sortout2 =(bool)=>{
+    } */
+    const sortout2 =(bool,remove,Cengkor)=>{
         let parent = document.querySelector(".parent");
         let alphaElement = null;
         let child = null;
+        let changeLang = null;
 
         const listENG = Country[0].listENG;
         let listKOR = bool ? Country[0].listENG : Country[0].listKOR;
         let alpha='A';
+
         for(let i=0;i<listENG.length;i++){
             if(i===0){
                 alphaElement=document.createElement("h1");
@@ -45,8 +50,9 @@ function Asia(){
             }
 
             if(alpha===listENG[i].charAt(0)){
-                child=document.createElement("div");
-                child.className = `${listENG[i]}-class`;
+                child=document.createElement("a");
+                //child.href=("www.naver.com")
+                child.className = `A-class`;
                 child.textContent = `${listKOR[i]}`;
                 alphaElement.append(child);
                 /* child = React.createElement('a',{href:"/"},`${listKOR[i]}`);
@@ -59,43 +65,49 @@ function Asia(){
                 alphaElement.textContent = `-${alpha}-`;
                 parent.append(alphaElement);
                 //부모하나 만들고
-                child=document.createElement("div");
-                child.className = `${listENG[i]}-class`;
+                child=document.createElement("a");
+                child.className = `A-class`;
                 child.textContent = `${listKOR[i]}`;
                 alphaElement.append(child);
                 //자식노드 넣어주고
             }
         }
     }
-    const sortout3 =(bool)=>{
-        let parent = document.querySelector(".parent");
-        let child = null;
 
-        child = document.createElement("div");
-        child.className = "child1";
-        child.textContent = "child1";
-        parent.append(child);
+    const removeAll=()=>{
+        let elementR = document.querySelector(".parent");
+            while(elementR.hasChildNodes()){
+                elementR.removeChild(elementR.firstChild);
+        }
+    }
+
+    const changeLang=(bool)=>{
+        console.log("get")
+        removeAll();
+        changeEngKor();
+        sortout2(bool);
+    }
+
+    const changeEngKor=()=>{
+        if(engkor===true){
+            setEngKor(false);
+        }else{
+            setEngKor(true);
+        }
     }
 
     return(
         <div>
-            <button onClick={()=>{
-                if(engkor===true){
-                    setEngKor(false);
-                }else{
-                    setEngKor(true);
-                }
-            }}>{engkor ? "ENG" : "한글"}</button>
+            <button onClick={changeEngKor}>{engkor ? "ENG" : "한글"}</button>
             <button onClick={()=>sortout2(engkor)}>Sort</button>
-            <button onClick={sortout3}>Sort3</button>
             <button onClick={()=>{
                 let elementR = document.querySelector(".parent");
                 while(elementR.hasChildNodes()){
                     elementR.removeChild(elementR.firstChild);
                 }
             }}>Remove</button>
-            <div className="parent">
-
+            <div className={`parent`} >
+                {/* <button id="changeLang" className={styles.changeLang} onClick={}>한/영</button> */}
             </div>
         </div>
     )
