@@ -3,10 +3,11 @@ div{
 }
 
 a{
-    display: block;
+    display:block;
     font-size: 12px;
     text-decoration: none;
     color:#000000;
+    margin: 5px 0;
 }
 
 a:hover{
@@ -27,4 +28,24 @@ h1{
 
 .changeLang:active{
     color: #00b9b9;
+}
+
+.parent{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 700px;
+    height: 500px;
+    border: 3px solid red;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.changeC{
+    width: 700px;
+    margin:0 auto;
+}
+
+.alpha{
+    width: 120px;
 }

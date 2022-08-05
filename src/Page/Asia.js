@@ -1,6 +1,6 @@
 import DataAsia from "../Component/DataInfo.js"
 import {Country} from "../Component/DataInfo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Asia.module.css";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -10,7 +10,8 @@ import "./Asia.css";
 
 function Asia(){
     const [engkor,setEngKor]=useState(true);
-    const [CountryName,setCountryName]=useState(Country[0].listENG);
+    const [xcountry,setXcountry]=useState(0);
+
 
     /* const sortout =(bool)=>{
         console.log(Country[0].listENG);
@@ -31,20 +32,20 @@ function Asia(){
             }
         }
     } */
-    const sortout2 =(bool,remove,Cengkor)=>{
+    const sortout2 =(bool,num)=>{
+        console.log("sortout2");
         let parent = document.querySelector(".parent");
         let alphaElement = null;
         let child = null;
-        let changeLang = null;
 
-        const listENG = Country[0].listENG;
-        let listKOR = bool ? Country[0].listENG : Country[0].listKOR;
+        const listENG = Country[num].listENG;
+        let listKOR = bool ? Country[num].listENG : Country[num].listKOR;
         let alpha='A';
 
         for(let i=0;i<listENG.length;i++){
             if(i===0){
                 alphaElement=document.createElement("h1");
-                alphaElement.className = `${alpha}-class`;
+                alphaElement.className = `${styles.alpha}`;
                 alphaElement.textContent = `-${alpha}-`;
                 parent.append(alphaElement);
             }
@@ -61,7 +62,7 @@ function Asia(){
                 alpha=listENG[i].charAt(0);
                 //알파켓먼저 넣고
                 alphaElement=document.createElement("h1");
-                alphaElement.className = `${alpha}-class`;
+                alphaElement.className = `${styles.alpha}`;
                 alphaElement.textContent = `-${alpha}-`;
                 parent.append(alphaElement);
                 //부모하나 만들고
@@ -74,40 +75,50 @@ function Asia(){
         }
     }
 
+/*     useEffect(()=>{
+        removeAll();
+        sortout2(engkor,xcountry);
+        console.log(engkor);
+    },[]) */
+
+    useEffect(()=>{
+        removeAll();
+        sortout2(engkor,xcountry);
+        console.log(Country);
+    },[engkor,xcountry])
+
+
+
     const removeAll=()=>{
+        console.log("removeAll");
         let elementR = document.querySelector(".parent");
             while(elementR.hasChildNodes()){
                 elementR.removeChild(elementR.firstChild);
         }
     }
 
-    const changeLang=(bool)=>{
-        console.log("get")
-        removeAll();
-        changeEngKor();
-        sortout2(bool);
-    }
-
-    const changeEngKor=()=>{
-        if(engkor===true){
-            setEngKor(false);
+    const changeCountry=(num)=>{
+        if(xcountry===num){
+            return;
         }else{
-            setEngKor(true);
+            setXcountry(num);
         }
     }
 
     return(
         <div>
-            <button onClick={changeEngKor}>{engkor ? "ENG" : "한글"}</button>
-            <button onClick={()=>sortout2(engkor)}>Sort</button>
-            <button onClick={()=>{
-                let elementR = document.querySelector(".parent");
-                while(elementR.hasChildNodes()){
-                    elementR.removeChild(elementR.firstChild);
-                }
-            }}>Remove</button>
-            <div className={`parent`} >
-                {/* <button id="changeLang" className={styles.changeLang} onClick={}>한/영</button> */}
+            <div className={styles.changeC}>
+                <button onClick={removeAll}>Remove</button>
+                <button onClick={()=>{
+                    setEngKor(engkor ? false : true);
+                    }}>{engkor ? "ENG" : "한글"}</button>
+                <button onClick={()=>changeCountry(0)}>{engkor ? "Asia" : "아시아"}</button>
+                <button onClick={()=>changeCountry(1)}>{engkor ? "Europe" : "유럽"}</button>
+                <button onClick={()=>changeCountry(2)}>{engkor ? "Oceania" : "오세아니아"}</button>
+                <button onClick={()=>changeCountry(3)}>{engkor ? "America" : "아메리카"}</button>
+                <button onClick={()=>changeCountry(4)}>{engkor ? "Africa" : "아프리카"}</button>
+            </div>
+            <div className={'parent'} >
             </div>
         </div>
     )
