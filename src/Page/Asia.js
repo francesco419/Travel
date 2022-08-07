@@ -1,17 +1,16 @@
-import DataAsia from "../Component/DataInfo.js"
 import {Country} from "../Component/DataInfo";
 import { useEffect, useState } from "react";
 import styles from "./Asia.module.css";
 import React from "react";
 import { Link } from "react-router-dom";
-import ReactDOM from 'react-dom'
 import "./Asia.css";
-
+import {useLocation} from "react-router-dom";
 
 function Asia(){
+    const location =useLocation();
     const [engkor,setEngKor]=useState(true);
-    const [xcountry,setXcountry]=useState(0);
-
+    console.log(location.state)
+    const [xcountry,setXcountry]=useState(location.state ? location.state : 0);
 
     /* const sortout =(bool)=>{
         console.log(Country[0].listENG);
@@ -52,8 +51,8 @@ function Asia(){
 
             if(alpha===listENG[i].charAt(0)){
                 child=document.createElement("a");
-                //child.href=("www.naver.com")
-                child.className = `A-class`;
+                child.href=(`${process.env.PUBLIC_URL}/Country/${Country[num].listKOR[i]}`);
+                child.className = `${Country[num].listENG[i]}`;
                 child.textContent = `${listKOR[i]}`;
                 alphaElement.append(child);
                 /* child = React.createElement('a',{href:"/"},`${listKOR[i]}`);
@@ -67,7 +66,8 @@ function Asia(){
                 parent.append(alphaElement);
                 //부모하나 만들고
                 child=document.createElement("a");
-                child.className = `A-class`;
+                child.href=(`${process.env.PUBLIC_URL}/Country/${Country[num].listKOR[i]}`);
+                child.className = `${Country[num].listENG[i]}`;
                 child.textContent = `${listKOR[i]}`;
                 alphaElement.append(child);
                 //자식노드 넣어주고
@@ -108,7 +108,7 @@ function Asia(){
     return(
         <div>
             <div className={styles.changeC}>
-                <button onClick={removeAll}>Remove</button>
+                <button><Link to={'/'}>메인페이지</Link></button>
                 <button onClick={()=>{
                     setEngKor(engkor ? false : true);
                     }}>{engkor ? "ENG" : "한글"}</button>

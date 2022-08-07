@@ -8,4 +8,6 @@
     padding: 10px;
     border: 1px solid;
     margin: 0 auto;
+    align-items: center;
+    text-align: center;
 }

@@ -26,7 +26,7 @@ export const Country =[
     {
         name:'Africa',
         listENG:['Algeria','Angola','Benin','Botswana','Burkina Faso','Burundi','Cabo Verde','Cameroon','Central African Republic','Chad','Comoros','Congo',"Côte d'Ivoire",'Djibouti','DR Congo','Egypt','Equatorial Guinea','Eritrea','Eswatini','Ethiopia','Gabon','Gambia','Ghana','Guinea','Guinea-Bissau','Kenya','Lesotho','Liberia','Libya','Madagascar','Malawi','Mali','Mauritania','Mauritius','Morocco','Mozambique','Namibia','Niger','Nigeria','Rwanda','Sao Tome & Principe','Senegal','Seychelles','Sierra Leone','Somalia','South Africa','South Sudan','Sudan','Tanzania','Togo','Tunisia','Uganda','Zambia','Zimbabwe'],
-        listKOR:['알제리','앙골라','베냉','보츠와나','부키르나파소','부룬디','카보베르데','카메룬','중앙아프리카 공화국','차드','코모로','콩고','코트디부아르','지부티','콩고 민주 공화국','이집트','적도 기니','에리트레아','에스와티니','에티오피아','가봉','감비아','가나','기니','기니비사우','케냐','레소토','라이베리아','리비아','마다가스카르','말라위','말리','모리타니','상투메 프린시페','세네갈','세이셸','시에라리온','소말리아','남아프리카 공화국','남수단','수단','탄자니아','토고','튀니지','우간다','잠비아','짐바브웨'],
+        listKOR:['알제리','앙골라','베냉','보츠와나','부키르나파소','부룬디','카보베르데','카메룬','중앙아프리카 공화국','차드','코모로','콩고','코트디부아르','지부티','콩고 민주 공화국','이집트','적도 기니','에리트레아','에스와티니','에티오피아','가봉','감비아','가나','기니','기니비사우','케냐','레소토','라이베리아','리비아','마다가스카르','말라위','말리','모리타니','모리셔스','모로코','모잠비크','나미비아','니제르','나이지리아','르완다','상투메 프린시페','세네갈','세이셸','시에라리온','소말리아','남아프리카 공화국','남수단','수단','탄자니아','토고','튀니지','우간다','잠비아','짐바브웨'],
         count:54,
     }
 ]

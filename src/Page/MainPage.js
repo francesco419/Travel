@@ -68,11 +68,11 @@ function ContinentSVG({num}){
         case 5: return <Asia/>
         case 6: return (
             <div className={styles.viewAllbox}>
-                <Link to={"/Asia"}>Asia</Link>
-                <button>Europe</button>
-                <button>Oceania</button>
-                <button>America</button>
-                <button>Africa</button>
+                <Link to={"/Asia"} state={0}>Asia</Link>
+                <Link to={"/Asia"} state={1}>Europe</Link>
+                <Link to={"/Asia"} state={2}>Oceania</Link>
+                <Link to={"/Asia"} state={3}>America</Link>
+                <Link to={"/Asia"} state={4}>Africa</Link>
             </div>
         )
     }
