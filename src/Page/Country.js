@@ -14,21 +14,19 @@ function Country(){
 
     const getCountryAlarm=async()=>{
         try{
-            setCalarmlevel(null);
             const response = await axios.get(`https://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2?serviceKey=${API_KEY}&returnType=JSON&cond[country_nm::EQ]=${params.id}&pageNo=1`);
             setCalarmlevel(response.data);
+            getCountryInfo();
         } catch(e){
             console.log("Country Alarm Error");
         }
-        getCountryInfo();
     }
 
     const getCountryInfo=async()=>{
         try{
-            setIcountry(null);
             const response = await axios.get(`http://apis.data.go.kr/1262000/OverviewGnrlInfoService/getOverviewGnrlInfoList?serviceKey=${API_KEY}&cond[country_nm::EQ]=${params.id}`);
             setIcountry(response.data);
-            setLoading(false);
+            setLoading();
         } catch(e){
             console.log("Country Info Error");
         }
@@ -37,13 +35,17 @@ function Country(){
     const getItem=async()=>{
         getCountryAlarm();
     }
+
+    const capital=(data)=>{
+        let temp = data.split('’');
+        return temp[0];
+    }
     
     useEffect(()=>{
         getItem();
-        console.log(Calarmlevel)
     },[]);
-    console.log(Calarmlevel)
-    console.log(Icountry)
+    console.log(Icountry.data)
+    console.log(Calarmlevel.data)
 
     return (
         <div>
@@ -54,8 +56,24 @@ function Country(){
                     <div>
                         <div></div>
                         <div className={styles.container}>
-                            <div className={styles.map}>a</div>
-                            <div className={styles.info}>a</div>
+                            <div className={styles.map}>
+                                <div>{Calarmlevel.data[0].dang_map_download_url}</div>
+                            </div>
+                            <div className={styles.info}>
+                                <p>{params.id}</p>
+                                <p>수도</p>
+                                <div>{capital(Icountry.data[0].capital)}</div>
+                                <p>기후</p>
+                                <div>{Icountry.data[0].climate}</div>
+                                <p>언어</p>
+                                <div>{Icountry.data[0].lang}</div>
+                                <p>인구 수</p>
+                                <div>{Icountry.data[0].population}</div>
+                                <p>종교</p>
+                                <div>{Icountry.data[0].religion}</div>
+                                <p>여행경보</p>
+                                <div>{Calarmlevel.data[0].alarm_lvl}</div>
+                                </div>
                         </div>
                     </div>
                 )
