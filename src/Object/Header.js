@@ -16,14 +16,14 @@ function Header(){
                 <div>
                     <h1>TravelAway</h1>
                 </div>
-                <ul>
-                    <li className={styles.menuli}
-                    onMouseEnter={()=>setDropdown(true)} onMouseLeave={()=>setDropdown(false)}
-                    onClick={down}
-                    ><div className={styles.name}>검색</div>
-                    {dropdown && <Dropdown/>}
-                    </li>
-                </ul>
+                    <ul>
+                        <li className={styles.menuli}
+                        onMouseEnter={()=>setDropdown(true)} onMouseLeave={()=>setDropdown(false)}
+                        onClick={down}
+                        ><div className={styles.name}>검색</div>
+                        {dropdown && <Dropdown/>}
+                        </li>
+                    </ul>
                 <div></div>
             </nav>
         </div>     

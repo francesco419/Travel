@@ -1,8 +1,10 @@
 .dropdown{
   width: 10rem;
   position: absolute;
-  top: 72px;
+  top: 54px;
+  right: 5px;
   list-style: none;
   text-align: start;
   background-color: green;
+  z-index: 99;
 }

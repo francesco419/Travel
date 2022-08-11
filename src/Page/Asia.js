@@ -5,6 +5,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Asia.css";
 import {useLocation} from "react-router-dom";
+import Header from "../Object/Header";
 
 function Asia(){
     const location =useLocation();
@@ -107,6 +108,7 @@ function Asia(){
 
     return(
         <div>
+            <Header/>
             <div className={styles.changeC}>
                 <button><Link to={'/'}>메인페이지</Link></button>
                 <button onClick={()=>{
