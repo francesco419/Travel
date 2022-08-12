@@ -2,9 +2,8 @@
   width: 10rem;
   position: absolute;
   top: 54px;
-  right: 5px;
   list-style: none;
   text-align: start;
-  background-color: green;
+  background-color: #ffffff;
   z-index: 99;
 }
