@@ -23,6 +23,12 @@ function Header(){
                         ><div className={styles.name}>검색</div>
                         {dropdown && <Dropdown/>}
                         </li>
+                        <li className={styles.menuli}
+                        onMouseEnter={()=>setDropdown(true)} onMouseLeave={()=>setDropdown(false)}
+                        onClick={down}
+                        ><div className={styles.name}>검색</div>
+                        {dropdown && <Dropdown/>}
+                        </li>
                     </ul>
                 <div></div>
             </nav>
