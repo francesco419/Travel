@@ -12,16 +12,6 @@ function Country(){
     [Calarmlevel,setCalarmlevel]=useState([]),
     [loading,setLoading]=useState(true);
 
-    const getCountryCode=async()=>{
-        try{
-            const response = await axios.get(`https://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2?serviceKey=${API_KEY}&returnType=JSON&cond[country_nm::EQ]=${params.id}&pageNo=1`);
-            setCalarmlevel(response.data);
-            getCountryInfo();
-        } catch(e){
-            console.log("Country Alarm Error");
-        }
-    }
-
     const getCountryAlarm=async()=>{
         try{
             const response = await axios.get(`https://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2?serviceKey=${API_KEY}&returnType=JSON&cond[country_nm::EQ]=${params.id}&pageNo=1`);
