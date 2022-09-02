@@ -53,8 +53,7 @@ function Country(){
             {
                 loading ? (<div>Loading</div>) :(
 
-                    <div>
-                        <div></div>
+                    <div className={styles.box}>
                         <div className={styles.container}>
                             <div className={styles.map}>
                                 <div>{Calarmlevel.data[0].dang_map_download_url}</div>
