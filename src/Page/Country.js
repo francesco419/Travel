@@ -56,7 +56,10 @@ function Country(){
                     <div className={styles.box}>
                         <div className={styles.container}>
                             <div className={styles.map}>
-                                <div>{Calarmlevel.data[0].dang_map_download_url}</div>
+                                <div className={styles.imagebox}>
+                                <img src={Calarmlevel.data[0].dang_map_download_url}/>
+                                <img src={Calarmlevel.data[0].flag_download_url}/>
+                                </div>
                             </div>
                             <div className={styles.info}>
                                 <p>{params.id}</p>
