@@ -10,7 +10,8 @@ function Country(){
     const params = useParams();
     const [Icountry,setIcountry]=useState([]),
     [Calarmlevel,setCalarmlevel]=useState([]),
-    [loading,setLoading]=useState(true);
+    [loading,setLoading]=useState(true),
+    [imagedata,setImagedata]=useState(null);
 
     const getCountryAlarm=async()=>{
         try{
@@ -56,9 +57,13 @@ function Country(){
                     <div className={styles.box}>
                         <div className={styles.container}>
                             <div className={styles.map}>
-                                <div className={styles.imagebox}>
-                                <img src={Calarmlevel.data[0].dang_map_download_url}/>
-                                <img src={Calarmlevel.data[0].flag_download_url}/>
+                                <div>
+                                    <div className={styles.mainimage}>
+                                        <img className={styles.imagemain} src={imagedata ? imagedata : Calarmlevel.data[0].flag_download_url}/>
+                                    </div>
+                                    <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].flag_download_url)} src={Calarmlevel.data[0].flag_download_url}/>
+                                    <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].dang_map_download_url)} src={Calarmlevel.data[0].dang_map_download_url}/>
+                                    <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].map_download_url)} src={Calarmlevel.data[0].map_download_url}/>
                                 </div>
                             </div>
                             <div className={styles.info}>
