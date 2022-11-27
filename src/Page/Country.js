@@ -48,6 +48,29 @@ function Country(){
     console.log(Icountry.data)
     console.log(Calarmlevel.data)
 
+    function Infobox({text,data}){
+        let icon = false;
+        if(text==="여행경보"){
+            icon=true;
+        }
+        return(
+            <div className={styles.infobox}>
+                <div className={styles.infoname}>{text}{icon ? <span className={styles.test}>@
+                <div className={styles.test2}>AAAAAAAAAA</div></span> : null}</div>
+                <div className={styles.infodata}>{data ? data : '-'}</div>
+            </div>
+        )
+    }
+
+    const getimage=({data})=>{
+        console.log("getimage")
+        return(
+            <div className={styles.clickimage}>
+                <img src={data}/>
+            </div>
+        )
+    }
+
     return (
         <div>
             <Header/>
@@ -59,7 +82,7 @@ function Country(){
                             <div className={styles.map}>
                                 <div>
                                     <div className={styles.mainimage}>
-                                        <img className={styles.imagemain} src={imagedata ? imagedata : Calarmlevel.data[0].flag_download_url}/>
+                                        <img onClick={()=>getimage(imagedata)} className={styles.mainimagebox} src={imagedata ? imagedata : Calarmlevel.data[0].flag_download_url}/>
                                     </div>
                                     <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].flag_download_url)} src={Calarmlevel.data[0].flag_download_url}/>
                                     <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].dang_map_download_url)} src={Calarmlevel.data[0].dang_map_download_url}/>
@@ -67,20 +90,14 @@ function Country(){
                                 </div>
                             </div>
                             <div className={styles.info}>
-                                <p>{params.id}</p>
-                                <p>수도</p>
-                                <div>{capital(Icountry.data[0].capital)}</div>
-                                <p>기후</p>
-                                <div>{Icountry.data[0].climate}</div>
-                                <p>언어</p>
-                                <div>{Icountry.data[0].lang}</div>
-                                <p>인구 수</p>
-                                <div>{Icountry.data[0].population}</div>
-                                <p>종교</p>
-                                <div>{Icountry.data[0].religion}</div>
-                                <p>여행경보</p>
-                                <div>{Calarmlevel.data[0].alarm_lvl}</div>
-                                </div>
+                                <Infobox text='나라명' data={params.id}/>
+                                <Infobox text='수도' data={capital(Icountry.data[0].capital)}/>
+                                <Infobox text='기후' data={Icountry.data[0].climate}/>
+                                <Infobox text='인구수' data={Icountry.data[0].population}/>
+                                <Infobox text='언어' data={Icountry.data[0].lang}/>
+                                <Infobox text='종교' data={Icountry.data[0].religion}/>
+                                <Infobox text='여행경보' data={Calarmlevel.data[0].alarm_lvl}/>
+                            </div>
                         </div>
                     </div>
                 )
