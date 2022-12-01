@@ -37,11 +37,36 @@ function Country(){
         getCountryAlarm();
     }
 
-    const capital=(data)=>{
-        let temp = data.split('’');
+    const capital=(cap,lang)=>{
+        let temp;
+        if(lang===null){
+            temp = cap.split('’');
+        }else{
+            temp = lang.split(',');
+        }
         return temp[0];
     }
+
+    const populationcut=(population)=>{
+        if(population>9999999){
+            return `${Math.floor(population/100000000)}억명`;
+        }else if(population>9999){
+            return `${Math.floor(population/10000)}만명`;
+        }else if(population<10000){
+            return `${population}명`;
+        }
+    }
     
+    const level=(clevel)=>{
+        switch(clevel){
+            case 1 : return `1단계(여행유의) \n${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark}`
+            case 2 : return `2단계(여행자제) \n${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark}`
+            case 3 : return `3단계(출국권고) \n${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark}`
+            case 4 : return `4단계(흑색경보) \n${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark}`
+            default : return '여행경보없음';
+        }
+    }
+
     useEffect(()=>{
         getItem();
     },[]);
@@ -55,7 +80,7 @@ function Country(){
         }
         return(
             <div className={styles.infobox}>
-                <div className={styles.infoname}>{text}{icon ? <span className={styles.test}>@
+                <div className={styles.infoname}>{text}{icon ? <span className={styles.test}>◎
                 <div className={styles.test2}>AAAAAAAAAA</div></span> : null}</div>
                 <div className={styles.infodata}>{data ? data : '-'}</div>
             </div>
@@ -80,23 +105,21 @@ function Country(){
                     <div className={styles.box}>
                         <div className={styles.container}>
                             <div className={styles.map}>
-                                <div>
-                                    <div className={styles.mainimage}>
-                                        <img onClick={()=>getimage(imagedata)} className={styles.mainimagebox} src={imagedata ? imagedata : Calarmlevel.data[0].flag_download_url}/>
-                                    </div>
-                                    <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].flag_download_url)} src={Calarmlevel.data[0].flag_download_url}/>
-                                    <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].dang_map_download_url)} src={Calarmlevel.data[0].dang_map_download_url}/>
-                                    <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].map_download_url)} src={Calarmlevel.data[0].map_download_url}/>
+                                <div className={styles.mainimage}>
+                                    <img onClick={()=>getimage(imagedata)} className={styles.mainimagebox} src={imagedata ? imagedata : Calarmlevel.data[0].flag_download_url}/>
                                 </div>
+                                <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].flag_download_url)} src={Calarmlevel.data[0].flag_download_url} prop='flag'/>
+                                <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].dang_map_download_url)} src={Calarmlevel.data[0].dang_map_download_url} prop='경보지역지도'/>
+                                <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].map_download_url)} src={Calarmlevel.data[0].map_download_url} prop='주변지도'/>
                             </div>
                             <div className={styles.info}>
                                 <Infobox text='나라명' data={params.id}/>
-                                <Infobox text='수도' data={capital(Icountry.data[0].capital)}/>
+                                <Infobox text='수도' data={capital(Icountry.data[0].capital,null)}/>
                                 <Infobox text='기후' data={Icountry.data[0].climate}/>
-                                <Infobox text='인구수' data={Icountry.data[0].population}/>
-                                <Infobox text='언어' data={Icountry.data[0].lang}/>
+                                <Infobox text='인구수' data={populationcut(Icountry.data[0].population)}/>
+                                <Infobox text='언어' data={capital(null,Icountry.data[0].lang)}/>
                                 <Infobox text='종교' data={Icountry.data[0].religion}/>
-                                <Infobox text='여행경보' data={Calarmlevel.data[0].alarm_lvl}/>
+                                <Infobox text='여행경보' data={level(Calarmlevel.data[0].alarm_lvl)}/>
                             </div>
                         </div>
                     </div>
