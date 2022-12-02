@@ -59,10 +59,10 @@ function Country(){
     
     const level=(clevel)=>{
         switch(clevel){
-            case 1 : return `1단계(여행유의) \n${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark}`
-            case 2 : return `2단계(여행자제) \n${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark}`
-            case 3 : return `3단계(출국권고) \n${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark}`
-            case 4 : return `4단계(흑색경보) \n${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark}`
+            case 1 : return `1단계(여행유의) \n(${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark})`
+            case 2 : return `2단계(여행자제) \n(${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark})`
+            case 3 : return `3단계(출국권고) \n(${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark})`
+            case 4 : return `4단계(흑색경보) \n(${Calarmlevel.data[0].region_ty} : ${Calarmlevel.data[0].remark})`
             default : return '여행경보없음';
         }
     }
@@ -70,6 +70,7 @@ function Country(){
     useEffect(()=>{
         getItem();
     },[]);
+
     console.log(Icountry.data)
     console.log(Calarmlevel.data)
 
@@ -80,7 +81,7 @@ function Country(){
         }
         return(
             <div className={styles.infobox}>
-                <div className={styles.infoname}>{text}{icon ? <span className={styles.test}>◎
+                <div className={styles.infoname}>{text}{icon ? <span className={styles.test}>@
                 <div className={styles.test2}>AAAAAAAAAA</div></span> : null}</div>
                 <div className={styles.infodata}>{data ? data : '-'}</div>
             </div>
@@ -119,7 +120,16 @@ function Country(){
                                 <Infobox text='인구수' data={populationcut(Icountry.data[0].population)}/>
                                 <Infobox text='언어' data={capital(null,Icountry.data[0].lang)}/>
                                 <Infobox text='종교' data={Icountry.data[0].religion}/>
-                                <Infobox text='여행경보' data={level(Calarmlevel.data[0].alarm_lvl)}/>
+                                <div className={styles.alarm}>
+                                    <div className={styles.alarminfo}>여행경보</div>
+                                    <div className={styles.alarmtext}>{level(Calarmlevel.data[0].alarm_lvl)}</div>
+                                    <div className={styles.alarmdetail}>
+                                        <div className={styles.alarmlevel} style={{backgroundColor: '#1a57ff'}}>1단계 남색경보</div>
+                                        <div className={styles.alarmlevel} style={{backgroundColor: '#ecc100'}}>2단계 황색경보</div>
+                                        <div className={styles.alarmlevel} style={{backgroundColor: '#ce0000'}}>3단계 적색경보</div>
+                                        <div className={styles.alarmlevel} style={{backgroundColor: '#141414'}}>4단계 흑색경보</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

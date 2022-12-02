@@ -1,7 +1,7 @@
 .box{
     margin:30px auto;
-    white-space: pre-line;
     width: 1000px;
+    white-space: pre-wrap;
 }
 
 
@@ -39,7 +39,7 @@
 }
 .infobox{
     display: flex;
-    margin: 5px 0;
+    margin: 10px 0;
     border: 1px solid;
     border-radius: 15px;
 }
@@ -55,6 +55,41 @@
     font-weight: bold;
 }
 
+.alarm{
+    border: 1px solid;
+    border-radius: 15px;
+    line-height: 250%;
+}
+.alarminfo{
+    border-bottom: 1px solid;
+    border-radius: 15px 15px 0 0;
+    background-color: #802045;
+    color: #ffffff;
+    font-weight: bold;
+    height:30px;
+}
+.alarmtext{
+    border-bottom: 1px solid;
+}
+.alarmdetail{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.alarmlevel{
+    height: 100px;
+    width:100px;
+    margin: 10px 30px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.alarmlevel:hover{
+    border: 2px solid #000000;
+}
 
 .test{
     position: relative;
