@@ -43,3 +43,35 @@
        }
    }
   ```
+
+  - 각 여행경보에 대해 외교부 해외안전여행부에서 표시한 여행경보에대한 자세한 페이지를 연결함.
+
+  - 이미지 오버레이 작업
+
+    - 이미지 클릭시 화면 전체로 등장하는 오버레이에 대한 작업.
+    - `document.getElementById('ID').style.display='none';`와 같은 기능을 이용하여 팝업을 구현함.
+
+    ```html
+      <div id='popupimg' className={styles.popup_window}>
+          <div className={styles.popup_flex}>
+              <img className={styles.popup_img} src={imagedata ? imagedata : Calarmlevel.data[0].flag_download_url}/>
+              <button className={styles.popup_button} onClick={()=>{
+                  document.getElementById('popupimg').style.display='none';
+              }}>Close</button>
+          </div>
+      </div>
+    ```
+
+    ```css
+    .popup_window {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+    ```
+
+## 2.2

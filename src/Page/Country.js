@@ -49,7 +49,7 @@ function Country(){
     }
 
     const populationcut=(population)=>{
-        if(population>9999999){
+        if(population>99999999){
             return `${Math.floor(population/100000000)}억명`;
         }else if(population>9999){
             return `${Math.floor(population/10000)}만명`;
@@ -71,10 +71,9 @@ function Country(){
     useEffect(()=>{
         getItem();
     },[]);
-
     console.log(Icountry.data)
     console.log(Calarmlevel.data)
-
+    
     function Infobox({text,data}){
         let icon = false;
         if(text==="여행경보"){
@@ -89,11 +88,11 @@ function Country(){
         )
     }
 
-    const getimage=({data})=>{
+    function getimage(){
         console.log("getimage")
         return(
             <div className={styles.clickimage}>
-                <img src={data}/>
+                A
             </div>
         )
     }
@@ -107,8 +106,10 @@ function Country(){
                     <div className={styles.box}>
                         <div className={styles.container}>
                             <div className={styles.map}>
-                                <div className={styles.mainimage}>
-                                    <img onClick={()=>getimage(imagedata)} className={styles.mainimagebox} src={imagedata ? imagedata : Calarmlevel.data[0].flag_download_url}/>
+                                <div className={styles.mainimage} onClick={getimage} >
+                                    <img className={styles.mainimagebox} onClick={()=>{
+                                                document.getElementById('popupimg').style.display='block';
+                                            }} src={imagedata ? imagedata : Calarmlevel.data[0].flag_download_url}/>
                                 </div>
                                 <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].flag_download_url)} src={Calarmlevel.data[0].flag_download_url} prop='flag'/>
                                 <img className={styles.imagebox} onMouseEnter={()=>setImagedata(Calarmlevel.data[0].dang_map_download_url)} src={Calarmlevel.data[0].dang_map_download_url} prop='경보지역지도'/>
@@ -125,12 +126,44 @@ function Country(){
                                     <div className={styles.alarminfo}>여행경보</div>
                                     <div className={styles.alarmtext}>{level(Calarmlevel.data[0].alarm_lvl)}</div>
                                     <div className={styles.alarmdetail}>
-                                        <div className={styles.alarmlevel} style={{backgroundColor: '#1a57ff'}}>1단계 남색경보</div>
-                                        <div className={styles.alarmlevel} style={{backgroundColor: '#ecc100'}}>2단계 황색경보</div>
-                                        <div className={styles.alarmlevel} style={{backgroundColor: '#ce0000'}}>3단계 적색경보</div>
-                                        <div className={styles.alarmlevel} style={{backgroundColor: '#141414'}}>4단계 흑색경보</div>
+                                        <div className={styles.alarmlevel} style={Calarmlevel.data[0].alarm_lvl===1 ? { backgroundColor: '#1a57ff'}:{ backgroundColor: '#A9AEAA'}}>
+                                        <a href="https://www.0404.go.kr/dev/issue_current.mofa?level=attention"/>
+                                            <ul className={styles.alarmlist}>
+                                                <li>1단계</li>
+                                                <li>남색경보</li>
+                                            </ul>
+                                        </div>
+                                        <div className={styles.alarmlevel} style={Calarmlevel.data[0].alarm_lvl===2 ?{backgroundColor: '#ecc100'}:{ backgroundColor: '#A9AEAA'}}>
+                                            <a href="https://www.0404.go.kr/dev/issue_current.mofa?level=control"/>
+                                            <ul className={styles.alarmlist}>
+                                                <li>2단계</li>
+                                                <li>황색경보</li>
+                                            </ul>
+                                        </div>
+                                        <div className={styles.alarmlevel} style={Calarmlevel.data[0].alarm_lvl===3 ?{backgroundColor: '#ce0000'}:{ backgroundColor: '#A9AEAA'}}>
+                                            <a href="https://www.0404.go.kr/dev/issue_current.mofa?level=limit"/>
+                                            <ul className={styles.alarmlist}>
+                                                <li>3단계</li>
+                                                <li>적색경보</li>
+                                            </ul>
+                                        </div>
+                                        <div className={styles.alarmlevel} style={Calarmlevel.data[0].alarm_lvl===4 ?{backgroundColor: '#141414'}:{ backgroundColor: '#A9AEAA'}}>
+                                            <a href="https://www.0404.go.kr/dev/issue_current.mofa?level=ban" />
+                                            <ul className={styles.alarmlist}>
+                                                <li>4단계</li>
+                                                <li>흑색경보</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div id='popupimg' className={styles.popup_window}>
+                            <div className={styles.popup_flex}>
+                                <img className={styles.popup_img} src={imagedata ? imagedata : Calarmlevel.data[0].flag_download_url}/>
+                                <button className={styles.popup_button} onClick={()=>{
+                                    document.getElementById('popupimg').style.display='none';
+                                }}>Close</button>
                             </div>
                         </div>
                     </div>
