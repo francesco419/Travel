@@ -127,7 +127,7 @@ function Country(){
                                     <div className={styles.alarmtext}>{level(Calarmlevel.data[0].alarm_lvl)}</div>
                                     <div className={styles.alarmdetail}>
                                         <div className={styles.alarmlevel} style={Calarmlevel.data[0].alarm_lvl===1 ? { backgroundColor: '#1a57ff'}:{ backgroundColor: '#A9AEAA'}}>
-                                        <a href="https://www.0404.go.kr/dev/issue_current.mofa?level=attention"/>
+                                            <a href="https://www.0404.go.kr/dev/issue_current.mofa?level=attention"/>
                                             <ul className={styles.alarmlist}>
                                                 <li>1단계</li>
                                                 <li>남색경보</li>
@@ -163,7 +163,7 @@ function Country(){
                                 <img className={styles.popup_img} src={imagedata ? imagedata : Calarmlevel.data[0].flag_download_url}/>
                                 <button className={styles.popup_button} onClick={()=>{
                                     document.getElementById('popupimg').style.display='none';
-                                }}>Close</button>
+                                }}>닫기</button>
                             </div>
                         </div>
                     </div>

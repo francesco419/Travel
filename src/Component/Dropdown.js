@@ -9,7 +9,7 @@ function Dropdown(){
         <ul className={styles.dropdown} onClick={()=> setDropdown(!dropdown)}>
                 {continents.map((item)=>{
                     return(
-                        <li key={item.id}>
+                        <li className={styles.dropdown_list} key={item.id}>
                             <Link
                             to={item.path}
                             onClick={()=> setDropdown(false)}

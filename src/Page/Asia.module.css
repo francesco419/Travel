@@ -2,7 +2,7 @@ div{
     font-size: 12px;
 }
 
-a{
+.alpha a{
     display:block;
     font-size: 12px;
     text-decoration: none;
@@ -10,12 +10,21 @@ a{
     margin: 5px 0;
 }
 
-a:hover{
+.alpha a:hover{
     color: #00b9b9;
 }
 
 h1{
     width: 150px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;    
+    justify-content: center;
+    align-items: center;
+    margin:100px auto;
+    height:100%;
 }
 
 .changeLang{
@@ -34,18 +43,44 @@ h1{
     display: flex;
     position: relative;
     flex-direction: column;
-    width: 700px;
     height: 500px;
     border: 3px solid red;
     flex-wrap: wrap;
     padding: 10px;
 }
 
-.changeC{
-    width: 700px;
+.change_C{
     margin:0 auto;
 }
 
 .alpha{
     width: 120px;
+}
+.alpha a{
+    color:#f8f0f2;
+}
+
+.button_C{
+    width: 100px;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    margin: 30px 5px;
+    background-color: #f8f0f2;
+    color:#802045;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.button_link{
+    color:#802045;
+    font-weight: 900;
+}
+
+.button_C:hover{
+    background-color: #802045;
+    color: #f8f0f2;
+}
+.button_C:hover .button_link{
+    color: #f8f0f2;
 }

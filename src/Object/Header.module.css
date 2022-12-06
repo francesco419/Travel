@@ -1,7 +1,8 @@
 .container{
     width: 100%;
     height: 70px;
-    background-color: rgb(63, 49, 63);
+    background-color: #802045;
+    color:#ffffff;
 }
 
 .fullbar{
@@ -11,10 +12,12 @@
     justify-content: space-around;
 }
 
-.title{
+.title_link{
     display: flex;
     align-items: center;
-    color: #ffffff;
+    color:#ffffff;
+    text-decoration: none;
+    font-size: 20px;
 }
 
 .logo{
@@ -37,13 +40,16 @@
     padding:0;
     list-style: none;
 }
+.tableul:hover .menuli{
+    background-color: #ffffff;
+}
+
+.tableul:hover .name{
+    color:#000000;
+}
 
 .menuli{
     border-radius: 5px;
-}
-
-.tableul:hover .menuli{
-    background-color: #6d31ce;
 }
 
 .name{
@@ -53,8 +59,8 @@
     text-align: center;
     line-height: 40px;
     border-radius: 5px;
-    font-weight: bold;
-    color:white
+    text-decoration: none;
+    color:#ffffff;
 }
 
 .search{
@@ -65,7 +71,5 @@
 }
 
 .searchbox{
-    font-weight: bold;
     margin: 0 auto;
-    color:#ffffff
 }

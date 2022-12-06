@@ -2,8 +2,22 @@
   width: 100px;
   position: absolute;
   top: 70px;
+  padding: 0;
+  text-align: center;
   list-style: none;
-  text-align: start;
-  background-color: green;
+  background-color: #802045;
+  color:#ffffff;
   z-index: 99;
+  border-radius: 0 0 15px 15px;
+}
+
+.dropdown_list a{
+  display:block;
+  font-size: 12px;
+  text-decoration: none;
+  color:#ffffff;
+  margin: 20px 0;
+}
+.dropdown_list a:hover{
+  color: #ff0000;
 }

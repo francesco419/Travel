@@ -109,18 +109,20 @@ function Asia(){
     return(
         <div>
             <Header/>
-            <div className={styles.changeC}>
-                <button><Link to={'/'}>메인페이지</Link></button>
-                <button onClick={()=>{
-                    setEngKor(engkor ? false : true);
-                    }}>{engkor ? "ENG" : "한글"}</button>
-                <button onClick={()=>changeCountry(0)}>{engkor ? "Asia" : "아시아"}</button>
-                <button onClick={()=>changeCountry(1)}>{engkor ? "Europe" : "유럽"}</button>
-                <button onClick={()=>changeCountry(2)}>{engkor ? "Oceania" : "오세아니아"}</button>
-                <button onClick={()=>changeCountry(3)}>{engkor ? "America" : "아메리카"}</button>
-                <button onClick={()=>changeCountry(4)}>{engkor ? "Africa" : "아프리카"}</button>
-            </div>
-            <div className={'parent'} >
+            <div className={styles.container}>
+                <div className={'parent'} >
+                </div>
+                <div className={styles.change_C}>
+                    <button className={styles.button_C}><Link className={styles.button_link} style={{textDecoration:'none'}} to={'/'}>Mainpage</Link></button>
+                    <button className={styles.button_C} onClick={()=>{
+                        setEngKor(engkor ? false : true);
+                        }}>{engkor ? "ENG" : "한글"}</button>
+                    <button className={styles.button_C} onClick={()=>changeCountry(0)}>{engkor ? "Asia" : "아시아"}</button>
+                    <button className={styles.button_C} onClick={()=>changeCountry(1)}>{engkor ? "Europe" : "유럽"}</button>
+                    <button className={styles.button_C} onClick={()=>changeCountry(2)}>{engkor ? "Oceania" : "오세아니아"}</button>
+                    <button className={styles.button_C} onClick={()=>changeCountry(3)}>{engkor ? "America" : "아메리카"}</button>
+                    <button className={styles.button_C} onClick={()=>changeCountry(4)}>{engkor ? "Africa" : "아프리카"}</button>
+                </div>
             </div>
         </div>
     )
