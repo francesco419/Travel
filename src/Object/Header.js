@@ -3,6 +3,7 @@ import { useState } from "react";
 import Dropdown from "../Component/Dropdown";
 import searchicon from "../image/searchicon.png";
 import { Link } from "react-router-dom";
+import {AllCountry} from "../Component/DataInfo";
 
 function Header(){
     const [dropdown,setDropdown] = useState(false);
@@ -45,12 +46,18 @@ function Header(){
                         </li>
                     </ul>
                 </div>
-                <div className={styles.search}>
-                    <div className={styles.searchbox}>Search
-                    </div>
-                    <img  className={styles.logo}src={searchicon}/>
+                <div className={styles.search_box}>
+                    <input className={styles.search_input} size='15'  placeholder='Search' type='text' list='searchOption'/>
+                    <button type='submit' className={styles.search_button}>
+                        <img className={styles.logo}src={searchicon}/>
+                    </button>
                 </div>
             </nav>
+            <datalist id='searchOption'>
+                {AllCountry.map((item)=>(
+                    <option value={item}/>
+                ))}
+            </datalist>
         </div>     
     )
 }

@@ -81,8 +81,7 @@ function Country(){
         }
         return(
             <div className={styles.infobox}>
-                <div className={styles.infoname}>{text}{icon ? <span className={styles.test}>@
-                <div className={styles.test2}>AAAAAAAAAA</div></span> : null}</div>
+                <div className={styles.infoname}>{text}</div>
                 <div className={styles.infodata}>{data ? data : '-'}</div>
             </div>
         )

@@ -65,13 +65,35 @@
     color:#ffffff;
 }
 
-.search{
+.search_box{
     display: flex;
     align-items: center;
     width: 100px;
     height: 70px;
 }
 
-.searchbox{
+.search_out{
     margin: 0 auto;
+}
+
+.search_input{
+    display: block;
+    height:30px;
+    margin: 0 15px;
+    border: 0;
+    background-color: #ffffff00;
+    color:#ffffff;
+}
+.search_input::placeholder{
+    color:#f8f0f2;
+    font-weight: 900;
+}
+
+.search_button{
+    background-color: #802045;
+    border: 0;
+}
+
+button[type='submit']:active{
+    background-color: #1dfd1da1;
 }
