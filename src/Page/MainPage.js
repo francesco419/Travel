@@ -31,6 +31,12 @@ function MainPage(){
         }
         console.log(ContinentNum);
     }
+
+    function Button_switch({data}){
+        return(
+            <button className={styles.continentButton} style={ContinentNum===6 ? {display:"none"} : null} onClick={()=>switchNum(false)}>{data}</button>
+        )
+    }
     return(
         <div>
             {intropage ? <Introduction setIntropage={setIntropage}/> 
@@ -46,9 +52,9 @@ function MainPage(){
                                 setContinentNum(6);
                             }
                         }} className={styles.swapView}>전체보기</button>
-                        <button className={styles.continentButton} style={ContinentNum===6 ? {display:"none",marginLeft:"15px"} : {marginLeft:"15px"}} onClick={()=>switchNum(false)}>&lt;&lt;</button>
+                        <Button_switch data='<<'/>
                         <ContinentSVG num={ContinentNum}/>
-                        <button className={styles.continentButton} style={ContinentNum===6 ? {display:"none",marginRight:"15px"} : {marginRight:"15px"}} onClick={()=>switchNum(true)}>&gt;&gt;</button>
+                        <Button_switch data='>>'/>
                     </div>
                 </div>
             </div>
