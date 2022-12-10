@@ -4,6 +4,7 @@ import Dropdown from "../Component/Dropdown";
 import searchicon from "../image/searchicon.png";
 import { Link } from "react-router-dom";
 import {AllCountry} from "../Component/DataInfo";
+import Customer from "../Page/Customer";
 
 function Header(){
     const [dropdown,setDropdown] = useState(false);
@@ -30,24 +31,24 @@ function Header(){
                     </ul>
                     <ul className={styles.tableul}>
                         <li className={styles.menuli}>
-                            <div className={styles.name}>공백</div>
+                            <div className={styles.name}>작업중</div>
                         </li>
                     </ul>
                     <ul className={styles.tableul}>
                         <li className={styles.menuli}>
-                            <div className={styles.name}>공백</div>
+                            <div className={styles.name}>작업중</div>
                         </li>
                     </ul>
                     <ul className={styles.tableul}>
                         <li className={styles.menuli}>
-                            <Link to={`${process.env.PUBLIC_URL}/`}>
+                            <Link to={`/Customer`}>
                                 <div className={styles.name}>문의</div>
                             </Link>
                         </li>
                     </ul>
                 </div>
                 <div className={styles.search_box}>
-                    <input className={styles.search_input} size='15'  placeholder='Search' type='text' list='searchOption'/>
+                    <input className={styles.search_input} size='15' placeholder='Search' type='text' list='searchOption'/>
                     <button type='submit' className={styles.search_button}>
                         <img className={styles.logo}src={searchicon}/>
                     </button>

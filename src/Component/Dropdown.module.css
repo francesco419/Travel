@@ -9,6 +9,8 @@
   color:#ffffff;
   z-index: 99;
   border-radius: 0 0 15px 15px;
+  border: 5px solid #661937;
+  border-top:0;
 }
 
 .dropdown_list a{

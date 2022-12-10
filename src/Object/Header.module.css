@@ -90,6 +90,7 @@
 }
 
 .search_button{
+    cursor: pointer;
     background-color: #802045;
     border: 0;
 }

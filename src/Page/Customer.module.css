@@ -1,0 +1,31 @@
+.container{
+    padding:50px 0;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 800px;
+    margin:50px auto;
+    border: 10px double #ffffff;
+    border-radius: 15px;
+    background-color: #802045;
+}
+
+.input_name{
+    border: 0;
+    text-align: center;
+    margin:20px 0;
+    color:#ffffff;
+    background-color: #802045;
+}
+
+.input_name::placeholder{
+    text-align: center;
+    color:#ffffff;
+    text-decoration:underline;
+    font-weight: 1000;
+}

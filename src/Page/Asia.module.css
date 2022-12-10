@@ -23,8 +23,27 @@ h1{
     flex-direction: column;    
     justify-content: center;
     align-items: center;
-    margin:100px auto;
+    margin:100px auto 0 auto;
     height:100%;
+}
+
+.box{
+    height: 600px;
+    border: 10px double #f8f0f2;
+    border-radius: 15px;
+    min-width: 900px; 
+    color:#f8f0f2;
+    background-color: #802045;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.name{
+    height: 70px;
+    text-align: center;
+    font-size: 30px;
+    margin: 0;
+    border-bottom: 5px dotted #ffffff;
 }
 
 .changeLang{

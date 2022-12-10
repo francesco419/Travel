@@ -6,33 +6,28 @@
 .visualbox{
     display: flex;
     position: relative;
+    justify-content: space-between;
     width: 1000px;
     height: 600px;
     margin: 0 auto;
     border: 10px double #f8f0f2;
-    border-radius: 10%;
-    overflow: visible;
+    border-radius: 15px;
     align-items: center;
     background-color: #802045;
 }
 
 .continentButton{
-    width: 30px;
     height: 100%;
     border: 0;
-    margin: 0 15px;
+    padding: 0 15px;
     background-color:#ffffff00;
     font-size: 20px;
     color:#ffffff;
+    cursor: pointer;
 }
 
 .continentButton:hover{
-    font-size: 22px;
     font-weight: bold;
-}
-
-.continent{
-    margin:0 auto;
 }
 
 .swapView{

@@ -39,12 +39,16 @@ function Country(){
 
     const splitter=(cap,lang)=>{
         let temp;
-        if(lang===null){
-            temp = cap.split('’');
-            return temp[0];
+        if(lang===null&cap===null){
+            return '-';
         }else{
-            temp = lang.split(',');
-            return `${temp[0]} 외 ${temp.length}개`
+            if(lang===null){
+                temp = cap.split('’');
+                return temp[0];
+            }else{
+                temp = lang.split(',');
+                return `${temp[0]} 외 ${temp.length}개`
+            }
         }
     }
 
@@ -165,6 +169,7 @@ function Country(){
                                 }}>닫기</button>
                             </div>
                         </div>
+                        <p style={{fontSize:'10px'}}>*제공되는 모든 정보는 공공데아터포털을 통해 제공되는 데이터를 이용했습니다.</p>
                     </div>
                 )
             }

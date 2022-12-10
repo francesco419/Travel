@@ -33,7 +33,6 @@ function Asia(){
         }
     } */
     const sortout2 =(bool,num)=>{
-        console.log("sortout2");
         let parent = document.querySelector(".parent");
         let alphaElement = null;
         let child = null;
@@ -85,7 +84,6 @@ function Asia(){
     useEffect(()=>{
         removeAll();
         sortout2(engkor,xcountry);
-        console.log(Country);
     },[engkor,xcountry])
 
 
@@ -106,17 +104,44 @@ function Asia(){
         }
     }
 
+    function ContinentName(){
+        let temp;
+        if(xcountry===0){
+            temp= engkor ? 'Asia' : '아시아';
+        }
+        else if(xcountry===1){
+            temp= engkor ? 'Europe' : '유럽';
+        }
+        if(xcountry===2){
+            temp= engkor ? 'Oceania' : '오세아니아';
+        }
+        if(xcountry===3){
+            temp= engkor ? 'America' : '아메리카';
+        }
+        if(xcountry===4){
+            temp= engkor ? 'Africa' : '아프리카';
+        }
+        return(
+            <p>{temp}</p>
+        )
+    }
+
     return(
         <div>
             <Header/>
             <div className={styles.container}>
-                <div className={'parent'} >
+                <div className={styles.box}>
+                    <div className={styles.name}>
+                        <ContinentName/>
+                    </div>
+                    <div className={'parent'} >
+                    </div>
                 </div>
                 <div className={styles.change_C}>
-                    <button className={styles.button_C}><Link className={styles.button_link} style={{textDecoration:'none'}} to={'/'}>Mainpage</Link></button>
+                    <button className={styles.button_C}><Link className={styles.button_link} style={{textDecoration:'none'}} to={'/'}>{engkor ? 'Mainpage' : '메인페이지'}</Link></button>
                     <button className={styles.button_C} onClick={()=>{
                         setEngKor(engkor ? false : true);
-                        }}>{engkor ? "ENG" : "한글"}</button>
+                        }}>{engkor ? "한글" : "ENG"}</button>
                     <button className={styles.button_C} onClick={()=>changeCountry(0)}>{engkor ? "Asia" : "아시아"}</button>
                     <button className={styles.button_C} onClick={()=>changeCountry(1)}>{engkor ? "Europe" : "유럽"}</button>
                     <button className={styles.button_C} onClick={()=>changeCountry(2)}>{engkor ? "Oceania" : "오세아니아"}</button>

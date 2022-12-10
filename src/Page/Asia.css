@@ -3,14 +3,8 @@
     position: relative;
     flex-direction: column;
     height: 500px;
-    border: 10px double #f8f0f2;
-    border-radius: 15px;
     min-width: 900px;
     flex-wrap: wrap;
-    padding: 10px;
-    margin: 0 auto;
     align-items: center;
     text-align: center;
-    color:#f8f0f2;
-    background-color: #802045;
 }
