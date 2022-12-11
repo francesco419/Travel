@@ -87,6 +87,62 @@
   - 드롭다운 디자인 조정. (221207)
   - 검색기능 추가. (221207)
   - 드롭다운 리스트의 요소 링크 추가. (221210) _asia페이지에서 리스트의 링크 사용시 작동안됨_
+  - 방문한 페이지의 나라를 보여주고, 이를 삭제 및 클릭으로 다시 방문할 수 있는 인터페이스를 추가 하였다. (221211)
+
+    - 페이지 입장시마다 LocalStorage에 각각 저장하였고, 이를 헤더에서 불러들여 인터페이스를 구축하였다.
+
+      - 로컬스토리지 작업
+
+      ```javascript
+      const getVisit = () => {
+        if (JSON.parse(localStorage.getItem("VisitHistory")) === null) {
+          localStorage.setItem("VisitHistory", JSON.stringify(params.id));
+          console.log("배열 처음 생성");
+          //Localstorge에 아무것도 없을시 나라명 추가.
+        } else {
+          let visit;
+          if (Array.isArray(JSON.parse(localStorage.getItem("VisitHistory")))) {
+            visit = JSON.parse(localStorage.getItem("VisitHistory"));
+            //Localstorge에 정보가 배열일때 변수 visit에 바로 할당.
+          } else {
+            visit = [JSON.parse(localStorage.getItem("VisitHistory"))];
+            //Localstorge의 정보가 배열이 아닐시 배열 형태로 만들어 할당.
+          }
+          let index = visit.indexOf(params.id);
+          //Localstorge에 같은 데이터가 있는지 검색.
+          if (index !== -1) {
+            if (index === visit.length - 1) {
+              console.log("있는거 유지");
+              return;
+              //맨 끝에 같은 데이터 있을시 리턴.
+            } else {
+              visit.splice(index, 1);
+              visit.push(params.id);
+              localStorage.setItem("VisitHistory", JSON.stringify(visit));
+              console.log("있는거 삭제하고 넣기");
+              //배열 중간에 같은 데이터 있을시 삭제 및 배열 끝으로 추가.
+            }
+          } else {
+            visit.push(params.id);
+            localStorage.setItem("VisitHistory", JSON.stringify(visit));
+            console.log("새로넣기");
+            //새로운 데이터 추가시 맨 끝에 추가.
+          }
+        }
+      };
+      ```
+
+      - 헤더 엘레먼트 삭제함수
+
+      ```javascript
+      const Delete_Content = (data) => {
+        document.getElementById(data).remove(); //엘레먼트삭제
+        let local = JSON.parse(localStorage.getItem("VisitHistory")); //로컬스토리지 데이터 불러오기
+        let index = local.indexOf(data); //삭제할 데이터 인텍스 찾기
+        local.splice(index, 1); //인덱스를 이용해 데이터 삭제
+        localStorage.setItem("VisitHistory", JSON.stringify(local)); //로컬스토리지에 저장
+      };
+      ```
 
 - Mainpage 작업
 

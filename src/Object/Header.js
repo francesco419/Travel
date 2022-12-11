@@ -1,16 +1,33 @@
 import styles from "./Header.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "../Component/Dropdown";
 import searchicon from "../image/searchicon.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import {AllCountry} from "../Component/DataInfo";
-import Customer from "../Page/Customer";
 
-function Header(){
+function Header({}){
     const [dropdown,setDropdown] = useState(false);
     const down=()=>{
         setDropdown(true);
-        console.log("true")
+    }
+
+    const Delete_Content=(data)=>{
+        document.getElementById(data).remove();
+        let local = JSON.parse(localStorage.getItem('VisitHistory'));
+        let index = local.indexOf(data);
+        local.splice(index,1);
+        localStorage.setItem('VisitHistory',JSON.stringify(local));
+    }
+
+    function History({data}){
+        return(
+            <div id={data} className={styles.history_content}>
+                <Link className={styles.history_link} to={`/Country/${data}`} onClick={()=>{
+                    Navigate(0);
+                }}>{data}</Link>
+                <button className={styles.history_button} onClick={()=>Delete_Content(data)}>X</button>
+            </div>
+        )
     }
     return(
         <div className={styles.container}>
@@ -54,6 +71,15 @@ function Header(){
                     </button>
                 </div>
             </nav>
+            <div className={styles.history}>
+                {
+                    JSON.parse(localStorage.getItem('VisitHistory')).map((item)=>(
+                        <History
+                         data={item}
+                         />
+                    ))
+                }
+            </div>
             <datalist id='searchOption'>
                 {AllCountry.map((item)=>(
                     <option value={item}/>

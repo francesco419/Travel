@@ -32,6 +32,36 @@ function Country(){
             console.log("Country Info Error");
         }
     }
+
+    const getVisit=()=>{
+        if(JSON.parse(localStorage.getItem('VisitHistory'))===null){
+            localStorage.setItem('VisitHistory',JSON.stringify(params.id));
+            console.log('배열 처음 생성');
+        }else{
+            let visit;
+            if(Array.isArray(JSON.parse(localStorage.getItem('VisitHistory')))){
+                visit = JSON.parse(localStorage.getItem('VisitHistory'));
+            }else{
+                visit = [JSON.parse(localStorage.getItem('VisitHistory'))];
+            }
+            let index = visit.indexOf(params.id);
+            if(index!==-1){
+                if(index===(visit.length-1)){
+                    console.log('있는거 유지');
+                    return;
+                }else{
+                    visit.splice(index,1);
+                    visit.push(params.id);
+                    localStorage.setItem('VisitHistory',JSON.stringify(visit));
+                    console.log('있는거 삭제하고 넣기');
+                }
+            }else{
+                visit.push(params.id);
+                localStorage.setItem('VisitHistory',JSON.stringify(visit));
+                console.log('새로넣기');
+            }
+        }
+    }
     
     const getItem=async()=>{
         getCountryAlarm();
@@ -74,9 +104,11 @@ function Country(){
 
     useEffect(()=>{
         getItem();
+        getVisit();
     },[]);
-    console.log(Icountry.data)
-    console.log(Calarmlevel.data)
+
+    console.log(Icountry.data);
+    console.log(Calarmlevel.data);
     
     function Infobox({text,data}){
         let icon = false;
@@ -169,7 +201,7 @@ function Country(){
                                 }}>닫기</button>
                             </div>
                         </div>
-                        <p style={{fontSize:'10px'}}>*제공되는 모든 정보는 공공데아터포털을 통해 제공되는 데이터를 이용했습니다.</p>
+                        <p style={{fontSize:'10px'}}>*제공되는 모든 정보는 공공데이터포털을 통해 제공되는 데이터를 이용했습니다.</p>
                     </div>
                 )
             }

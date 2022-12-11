@@ -84,9 +84,7 @@ function Asia(){
     useEffect(()=>{
         removeAll();
         sortout2(engkor,xcountry);
-    },[engkor,xcountry])
-
-
+    },[engkor,xcountry]);
 
     const removeAll=()=>{
         console.log("removeAll");
