@@ -5,15 +5,17 @@
     height: 70px;
     background-color: #802045;
     color:#ffffff;
+    z-index: 99;
 }
 
 .fullbar{
     display: flex;
     align-items: center;
-    width:1400px;
+    max-width:1400px;
     height: 100%;
-    margin:0 auto;
-    justify-content: space-around;
+    margin:0;
+    justify-content: space-between;
+    padding:0 200px;
 }
 
 .title_link{
@@ -74,10 +76,6 @@
     height: 70px;
 }
 
-.search_out{
-    margin: 0 auto;
-}
-
 .search_input{
     display: block;
     height:30px;
@@ -107,6 +105,11 @@ button[type='submit']:active{
     align-items: center;
     height:32px;
     background-color: #d1d1d1;
+}
+
+.history_name{
+    color:#000000;
+    margin: 0 10px 0 0;
 }
 
 .history_content{

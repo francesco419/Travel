@@ -1,6 +1,6 @@
 import {continents} from "../Component/NavItem";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import styles from "./Dropdown.module.css";
 
 function Dropdown(){
@@ -12,7 +12,8 @@ function Dropdown(){
                         <li className={styles.dropdown_list} key={item.id}>
                             <Link
                             to={item.path}
-                            onClick={()=> setDropdown(false)}
+                            onClick={()=> {setDropdown(false); Navigate(0);}}
+                            state={item.state}
                             >
                                 {item.title}
                             </Link>

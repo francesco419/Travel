@@ -10,7 +10,7 @@ import Header from "../Object/Header";
 function Asia(){
     const location =useLocation();
     const [engkor,setEngKor]=useState(true);
-    console.log(location.state)
+    console.log(location.state);
     const [xcountry,setXcountry]=useState(location.state ? location.state : 0);
 
     /* const sortout =(bool)=>{
@@ -38,6 +38,11 @@ function Asia(){
         let child = null;
 
         const listENG = Country[num].listENG;
+        /* for(let i=0;i<Country.length;i++){
+            console.log(Country[i].listENG.length);
+            console.log(Country[i].listKOR.length);
+            console.log('---------------');
+        } */
         let listKOR = bool ? Country[num].listENG : Country[num].listKOR;
         let alpha='A';
 

@@ -2,11 +2,20 @@ import styles from "./Header.module.css";
 import { useEffect, useState } from "react";
 import Dropdown from "../Component/Dropdown";
 import searchicon from "../image/searchicon.png";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import {AllCountry} from "../Component/DataInfo";
 
 function Header({}){
     const [dropdown,setDropdown] = useState(false);
+    const [searchresult,setSearchResult]=useState('');
+    let navi = useNavigate();
+
+    const searchChange = ({target: {value}})=>setSearchResult(value);
+
+    const searchSubmit = (data) =>{
+        navi(`/Country/${data}`);
+    }
+
     const down=()=>{
         setDropdown(true);
     }
@@ -64,19 +73,27 @@ function Header({}){
                         </li>
                     </ul>
                 </div>
-                <div className={styles.search_box}>
-                    <input className={styles.search_input} size='15' placeholder='Search' type='text' list='searchOption'/>
-                    <button type='submit' className={styles.search_button}>
+                <form className={styles.search_box}>
+                    <input className={styles.search_input} 
+                        size='15' 
+                        placeholder='Search' 
+                        type='text' 
+                        list='searchOption'
+                        value={searchresult}
+                        onChange={searchChange}
+                    />
+                    <button type='submit' className={styles.search_button} onClick={()=>searchSubmit(searchresult)}>
                         <img className={styles.logo}src={searchicon}/>
                     </button>
-                </div>
+                </form>
             </nav>
             <div className={styles.history}>
+                <div className={styles.history_name}>방문 국가 : </div>
                 {
                     JSON.parse(localStorage.getItem('VisitHistory')).map((item)=>(
                         <History
-                         data={item}
-                         />
+                        data={item}
+                        />
                     ))
                 }
             </div>
