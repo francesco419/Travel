@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Header from "../Object/Header";
 import styles from "./Country.module.css";
+import { exchange } from "../Component/exchange";
 
 const API_KEY=process.env.REACT_APP_API_KEY;
 
@@ -11,8 +12,21 @@ function Country(){
     const [Icountry,setIcountry]=useState([]),
     [Calarmlevel,setCalarmlevel]=useState([]),
     [loading,setLoading]=useState(true),
-    [imagedata,setImagedata]=useState(null);
+    [imagedata,setImagedata]=useState(null),
+    [swapExchange,setSwapExchange]=useState(false),
+    [v1,setV1]=useState(1),
+    [v2,setV2]=useState();
 
+    const v1Change=({target:{value}})=>{
+        setV1(value);
+        setV2(parseInt(value*KRWtoUSD(exchange[0].rates.USD)).toLocaleString('ko-KR'));
+    }
+    
+    const v2Change=({target:{value}})=>{
+        setV2(value);
+        setV1(parseFloat((value*exchange[0].rates.USD).toFixed(2)).toLocaleString('ko-KR'));
+    }
+    
     const getCountryAlarm=async()=>{
         try{
             const response = await axios.get(`https://apis.data.go.kr/1262000/TravelAlarmService2/getTravelAlarmList2?serviceKey=${API_KEY}&returnType=JSON&cond[country_nm::EQ]=${params.id}&pageNo=1`);
@@ -102,9 +116,15 @@ function Country(){
         }
     }
 
+    const extra=()=>{
+        setV1(1);
+        setV2(KRWtoUSD(exchange[0].rates.USD).toFixed(3));
+    }
+
     useEffect(()=>{
         getItem();
         getVisit();
+        extra();
     },[]);
 
     console.log(Icountry.data);
@@ -116,21 +136,26 @@ function Country(){
             icon=true;
         }
         return(
-            <div className={styles.infobox}>
-                <div className={styles.infoname}>{text}</div>
-                <div className={styles.infodata}>{data ? data : '-'}</div>
+            <div className={styles.info_box}>
+                <div className={styles.info_name}>{text}</div>
+                <div className={styles.info_data}>{data ? data : '-'}</div>
             </div>
         )
     }
 
-    function getimage(){
-        console.log("getimage")
-        return(
-            <div className={styles.clickimage}>
-                A
-            </div>
-        )
+    const KRWtoUSD=(data)=>{
+        let i = 1/data;
+        return i;
     }
+
+    const exchangeClick=()=>{
+        if(swapExchange){
+            setSwapExchange(false);
+        }else{
+            setSwapExchange(true);
+        }
+    }
+
 
     return (
         <div>
@@ -141,7 +166,7 @@ function Country(){
                     <div className={styles.box}>
                         <div className={styles.container}>
                             <div className={styles.map}>
-                                <div className={styles.mainimage} onClick={getimage} >
+                                <div className={styles.mainimage}>
                                     <img className={styles.mainimagebox} onClick={()=>{
                                                 document.getElementById('popupimg').style.display='block';
                                             }} src={imagedata ? imagedata : Calarmlevel.data[0].flag_download_url}/>
@@ -190,6 +215,29 @@ function Country(){
                                             </ul>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div className={styles.exchange}>
+                                <div className={styles.exchange_box}>
+                                    <div className={styles.info_box}>
+                                        <div className={styles.info_name}>USD (달러)</div>
+                                        <input
+                                        placeholder={swapExchange ? (exchange[0].rates.USD*1000).toFixed(3) : `1`}
+                                        type='text'
+                                        value={v1}
+                                        onChange={v1Change}
+                                        ></input>
+                                    </div>
+                                    <button className={styles.exchange_button} onClick={exchangeClick}>◎</button>
+                                    <div className={styles.info_box}>
+                                        <div className={styles.info_name}>KRW (원)</div>
+                                        <input
+                                        placeholder={swapExchange ? 1000 : KRWtoUSD(exchange[0].rates.USD).toFixed(3)}
+                                        type='text'
+                                        value={v2}
+                                        onChange={v2Change}
+                                        ></input>
+                                    </div>                                   
                                 </div>
                             </div>
                         </div>

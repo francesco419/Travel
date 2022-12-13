@@ -1,5 +1,10 @@
 # 1
 
+- 사용하는 API
+  - 공공데이터포털
+    - 외교부\_국가별 기본정보
+    - 외교부\_국가/지역별 여행경보
+
 ## 1.1
 
 인트로페이지 및 헤더초기 작업
@@ -155,6 +160,76 @@
 - Country 작업
 
   - 텍스트 및 디자인 조정 - border, text . (221207) / (221210)
+  - 환율표시 및 계산기능 제작. (221213)
+
+    - Fixer.io의 API를 통해 환율데이터 가져오기 => access_key의 오류로 (221213) 문제발생.
+    - API로드 오류로인해 각 데이터 배치를 완료하지 못함. => 일부 샘플 데이터를 통해 대체.
+    - input기능을 통해 환율을 계산할 수 있으며, state를 사용함으로서 입력함과 동시에 계산이 되도록 구현.
+      - input사용시 한글자만 입력해도 focus가 풀리는 문제발생.
+        - 위 문제는 함수속에 함수를 가지고 있는 input일 경우 이러한 문제가 발생한다.(hook함수 내에 다른 hook함수)
+        - 반복된 엘레먼트를 function형태로 재사용을 하려고 하였으나, function함수-input의 onChange함수를 가지고 있었으므로 input과 관련된 엘레먼트를 꺼냈더니 문제해결됨.
+    - API호출 작업 필요.
+
+    ```js
+    const [v1, setV1] = useState(1);
+    const [v2, setV2] = useState();
+
+    const v1Change = ({ target: { value } }) => {
+      setV1(value);
+      setV2(
+        parseInt(value * KRWtoUSD(exchange[0].rates.USD)).toLocaleString(
+          "ko-KR"
+        )
+      ); //한국에서는 센트(cent)의 개념이 없기에 parseInt로 소수점을 잘라내주었다.
+    };
+
+    const v2Change = ({ target: { value } }) => {
+      setV2(value);
+      setV1(
+        parseFloat((value * exchange[0].rates.USD).toFixed(2)).toLocaleString(
+          "ko-KR"
+        )
+      ); //parseFloat을 통해 소수점을 가져오고, toFixed로 소수점을 잘라내고, toLocaleString으로 자릿수 구분.
+    };
+
+    export const exchange = [
+      {
+        base: "KRW",
+        date: "2022-12-13",
+        rates: {
+          USD: 0.000765,
+        },
+        success: true,
+        timestamp: 1670897163,
+      },
+    ]; //exchange.js파일로 대체
+    ```
+
+    ```html
+       <div className={styles.exchange}>
+           <div className={styles.exchange_box}>
+               <div className={styles.info_box}>
+                   <div className={styles.info_name}>USD (달러)</div>
+                   <input
+                   placeholder={swapExchange ? (exchange[0].rates.USD*1000).toFixed(3) : `1`}
+                   type='text'
+                   value={v1}
+                   onChange={v1Change}
+                   ></input>
+               </div>
+               <button className={styles.exchange_button} onClick={exchangeClick}>◎</button>
+               <div className={styles.info_box}>
+                   <div className={styles.info_name}>KRW (원)</div>
+                   <input
+                   placeholder={swapExchange ? 1000 : KRWtoUSD(exchange[0].rates.USD).toFixed(3)}
+                   type='text'
+                   value={v2}
+                   onChange={v2Change}
+                   ></input>
+               </div>
+           </div>
+       </div>
+    ```
 
 - Customer 페이지 제작
 

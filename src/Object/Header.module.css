@@ -90,13 +90,16 @@
 }
 
 .search_button{
+    width: 45px;
+    height: 40px;
     cursor: pointer;
     background-color: #802045;
-    border: 0;
+    border: 1px solid #f8f0f2;
+    border-radius: 5px;
 }
 
 button[type='submit']:active{
-    background-color: #1dfd1da1;
+    background-color: #55152f;
 }
 
 .history{

@@ -12,8 +12,13 @@ function Header({}){
 
     const searchChange = ({target: {value}})=>setSearchResult(value);
 
-    const searchSubmit = (data) =>{
-        navi(`/Country/${data}`);
+    const searchSubmit = (data,e) =>{
+        if(AllCountry.indexOf(data)!==-1){
+            navi(`/Country/${data}`);
+        }else{
+            alert(`${data}는 존재하지 않습니다!`)
+            return;
+        }
     }
 
     const down=()=>{
@@ -73,7 +78,7 @@ function Header({}){
                         </li>
                     </ul>
                 </div>
-                <form className={styles.search_box}>
+                <div className={styles.search_box}>
                     <input className={styles.search_input} 
                         size='15' 
                         placeholder='Search' 
@@ -85,7 +90,7 @@ function Header({}){
                     <button type='submit' className={styles.search_button} onClick={()=>searchSubmit(searchresult)}>
                         <img className={styles.logo}src={searchicon}/>
                     </button>
-                </form>
+                </div>
             </nav>
             <div className={styles.history}>
                 <div className={styles.history_name}>방문 국가 : </div>

@@ -11,11 +11,13 @@
 
 .container{
     display: flex;
+    flex-wrap: wrap;
     padding: 30px;
     margin: 0 auto;
     border: 10px double #802045;
     border-radius: 15px;
     background-color: #f8f0f2;
+    max-width: 1000px;
 }
 
 .map{
@@ -80,23 +82,23 @@
     margin: 0 20px;
     line-height: 250%;
 }
-.infobox{
+.info_box{
     display: flex;
     margin: 10px 0;
     border: 2px solid #802045;
     border-radius: 15px;
 }
-.infobox div{
+.info_box div{
     min-height:30px;
     width: 50%;
 }
-.infoname{
+.info_name{
     border-radius: 10px 0 0 10px;
     background-color:#802045;
     color:#ffffff;
     font-weight: bold;
 }
-.infodata{
+.info_data{
     padding:0 5px;
     font-weight:600;
     background-color: #ffffff;
@@ -165,4 +167,44 @@
     height:100%;
     top:0;
     z-index: 99;
+}
+
+.exchange{
+    width: 1000px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.exchange_box{
+    display: flex;
+    line-height: 250%;
+    align-items: center;
+}
+.exchange_box div{
+    min-width: 150px;
+}
+
+.exchange_button{
+    height: 30px;
+    width: 30px;
+    margin: 0 10px;
+    border-radius: 50%;
+    background-color: #802045;
+    cursor: pointer;
+    color:#ffffff;
+}
+.exchange_button:active{
+    background-color: #55152f;
+}
+
+input[type='text']{
+    text-align: center;
+    border: 0;
+    border-radius: 0 20px 20px 0;
+}
+input[type='text']:focus{
+    outline: none;
+}
+input[type='text']::placeholder{
+    color: #000000;
 }
