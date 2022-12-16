@@ -170,13 +170,13 @@
 }
 
 .exchange{
-    width: 1000px;
+    width: 350px;
     text-align: center;
     margin: 20px 0;
 }
 
 .exchange_box{
-    display: flex;
+
     line-height: 250%;
     align-items: center;
 }

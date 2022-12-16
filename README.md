@@ -159,7 +159,7 @@
 
 - Country 작업
 
-  - 텍스트 및 디자인 조정 - border, text . (221207) / (221210)
+  - 텍스트 및 디자인 조정 - border, text . (221207) / (221210) / (221216)
   - 환율표시 및 계산기능 제작. (221213)
 
     - Fixer.io의 API를 통해 환율데이터 가져오기 => access_key의 오류로 (221213) 문제발생.
@@ -169,6 +169,7 @@
         - 위 문제는 함수속에 함수를 가지고 있는 input일 경우 이러한 문제가 발생한다.(hook함수 내에 다른 hook함수)
         - 반복된 엘레먼트를 function형태로 재사용을 하려고 하였으나, function함수-input의 onChange함수를 가지고 있었으므로 input과 관련된 엘레먼트를 꺼냈더니 문제해결됨.
     - API호출 작업 필요.
+    - 버튼 삭제.
 
     ```js
     const [v1, setV1] = useState(1);
@@ -217,7 +218,7 @@
                    onChange={v1Change}
                    ></input>
                </div>
-               <button className={styles.exchange_button} onClick={exchangeClick}>◎</button>
+               <<!-- button className={styles.exchange_button} onClick={exchangeClick}>◎</button> -->
                <div className={styles.info_box}>
                    <div className={styles.info_name}>KRW (원)</div>
                    <input

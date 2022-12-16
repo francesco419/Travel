@@ -228,7 +228,6 @@ function Country(){
                                         onChange={v1Change}
                                         ></input>
                                     </div>
-                                    <button className={styles.exchange_button} onClick={exchangeClick}>◎</button>
                                     <div className={styles.info_box}>
                                         <div className={styles.info_name}>KRW (원)</div>
                                         <input
