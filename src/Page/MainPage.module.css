@@ -75,3 +75,9 @@
 .link_svg:hover g{
     fill: #d3cacc;
 }
+
+@media screen and (max-width:767px){
+    .visualbox{
+        width:auto;
+    }
+}
