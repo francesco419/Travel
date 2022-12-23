@@ -53,7 +53,7 @@ function MainPage(){
                             }
                         }} className={styles.swapView}>전체보기</button>
                         <Button_switch data='<<'/>
-                        <ContinentSVG num={ContinentNum}/>
+                        <ContinentSVG className={styles.svg_size} num={ContinentNum}/>
                         <Button_switch data='>>'/>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ function ContinentSVG({num}){
         case 1: return <div className={styles.continent}>
                             <Link style={{margin:' 15px 0'}} className={styles.link_svg} to={"/Asia"} state={0}>
                                 <Africa/>
-                                Asia
+                                Africa
                             </Link>
                         </div>
         case 2: return <div className={styles.continent}>
@@ -92,7 +92,7 @@ function ContinentSVG({num}){
         case 5: return <div className={styles.continent}>
                             <Link style={{margin:' 15px 0'}} className={styles.link_svg} to={"/Asia"} state={4}>
                                 <Asia/>
-                                Africa
+                                Asia
                             </Link>
                         </div>
         case 6: return (

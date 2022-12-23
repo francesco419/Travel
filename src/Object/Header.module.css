@@ -32,6 +32,10 @@
     margin-right: 10px;
 }
 
+.reposive_button{
+    display:none;
+}
+
 .section{
     display: flex;
 }
@@ -72,7 +76,6 @@
 .search_box{
     display: flex;
     align-items: center;
-    width: 100px;
     height: 70px;
 }
 
@@ -146,8 +149,48 @@ button[type='submit']:active{
 
 @media screen and (max-width:767px){
     .fullbar{
+        position:relative;
         margin:0;
-        padding:0 30px;
+        padding:0 20px;
+    }
+
+    .reposive_button{
+        display: block;
+        border: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #802045;
+        color:#ffffff;
+    }
+    .reposive_button:hover{
+        background-color: #55152f;
+    }
+
+    .section{
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        align-items: center;
+        top:70px;
+        left:0;
+        width: 100%;
+        background-color: #802045;
+        border-top: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+    }
+
+    .tableul{
+        width: 100%;
+        height: 70px;
+    }
+
+    .name{
+        height: 40px;
+    }
+
+    .menuli{
+        width: 95%;
     }
 
     .history{
@@ -160,15 +203,67 @@ button[type='submit']:active{
         margin: 3px 5px;
         min-height: 18px;
     }
-    .tableul{
-        width: 50px;
-        height: 70px;
+    .search_box{
+        display: none;
     }
+}
+
+@media screen and (min-width:768px) and (max-width:1023px){
+    .fullbar{
+        position:relative;
+        margin:0;
+        padding:0 20px;
+        max-width:none;
+    }
+    .reposive_button{
+        display: block;
+        border: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #802045;
+        color:#ffffff;
+    }
+    .reposive_button:hover{
+        background-color: #55152f;
+    }
+
+    .section{
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        align-items: center;
+        top:70px;
+        left:0;
+        width: 100%;
+        background-color: #802045;
+        border-top: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+    }
+
+    .tableul{
+        width: 100%;
+        height: 70px;
+        margin:0;
+    }
+
     .name{
         height: 40px;
-        width: 50px;
     }
-    .search_button{
-        display: none;
+
+    .menuli{
+        margin:0 auto;
+        width: 90%;
+    }
+
+    .history{
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    .history_content{
+        flex-wrap:wrap;
+        margin: 3px 5px;
+        min-height: 18px;
     }
 }

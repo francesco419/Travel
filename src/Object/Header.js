@@ -50,11 +50,21 @@ function Header({}){
                     <img className={styles.logo} src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Android_O_Preview_Logo.png"/>
                     <p>TravelAway</p>
                 </Link>
-                <div className={styles.section}>
+                <button className={styles.reposive_button} onClick={()=>{
+                    let onoff = document.getElementById('res').style.display;
+                    if(onoff==='none'){
+                        document.getElementById('res').style.display='block';
+                    }else{
+                        document.getElementById('res').style.display='none';
+                    }
+                }}>
+                    ▒
+                </button>
+                <div id="res" className={styles.section}>
                     <ul className={styles.tableul} 
-                    onMouseEnter={()=>setDropdown(true)} 
-                    onMouseLeave={()=>setDropdown(false)}
-                    onClick={down}>
+                        onMouseEnter={()=>setDropdown(true)} 
+                        onMouseLeave={()=>setDropdown(false)}
+                        onClick={down}>
                         <li className={styles.menuli}>
                             <div className={styles.name}>대륙</div>
                         </li>
@@ -95,11 +105,13 @@ function Header({}){
             <div className={styles.history}>
                 <div className={styles.history_name}>방문 국가 : </div>
                 {
+                    JSON.parse(localStorage.getItem('VisitHistory')) ?
                     JSON.parse(localStorage.getItem('VisitHistory')).map((item)=>(
                         <History
                         data={item}
                         />
-                    ))
+                    )) : null
+
                 }
             </div>
             <datalist id='searchOption'>

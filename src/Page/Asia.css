@@ -8,3 +8,23 @@
     align-items: center;
     text-align: center;
 }
+
+@media screen and (max-width:767px){
+    .parent{
+        flex-direction: row;
+        min-width:0;
+        height: auto;
+        align-items: baseline;
+        margin: 10px 0;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1023px){
+    .parent{
+        flex-direction: row;
+        min-width:0;
+        height: auto;
+        align-items: baseline;
+        margin: 10px 0;
+    }
+}

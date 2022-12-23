@@ -56,7 +56,7 @@ function Asia(){
 
             if(alpha===listENG[i].charAt(0)){
                 child=document.createElement("a");
-                child.href=(`${process.env.PUBLIC_URL}/Country/${Country[num].listKOR[i]}`);
+                child.href=(`${process.env.PUBLIC_URL}/Country/${(Country[num].listKOR[i])}`);
                 child.className = `${Country[num].listENG[i]}`;
                 child.textContent = `${listKOR[i]}`;
                 alphaElement.append(child);
@@ -71,7 +71,7 @@ function Asia(){
                 parent.append(alphaElement);
                 //부모하나 만들고
                 child=document.createElement("a");
-                child.href=(`${process.env.PUBLIC_URL}/Country/${Country[num].listKOR[i]}`);
+                child.href=(`${process.env.PUBLIC_URL}/Country/${(Country[num].listKOR[i])}`);
                 child.className = `${Country[num].listENG[i]}`;
                 child.textContent = `${listKOR[i]}`;
                 alphaElement.append(child);
@@ -115,13 +115,13 @@ function Asia(){
         else if(xcountry===1){
             temp= engkor ? 'Europe' : '유럽';
         }
-        if(xcountry===2){
+        else if(xcountry===2){
             temp= engkor ? 'Oceania' : '오세아니아';
         }
-        if(xcountry===3){
+        else if(xcountry===3){
             temp= engkor ? 'America' : '아메리카';
         }
-        if(xcountry===4){
+        else if(xcountry===4){
             temp= engkor ? 'Africa' : '아프리카';
         }
         return(
@@ -141,7 +141,7 @@ function Asia(){
                     </div>
                 </div>
                 <div className={styles.change_C}>
-                    <button className={styles.button_C}><Link className={styles.button_link} style={{textDecoration:'none'}} to={'/'}>{engkor ? 'Mainpage' : '메인페이지'}</Link></button>
+                    <button className={styles.button_C}><Link className={styles.button_link} style={{textDecoration:'none'}} to={`${process.env.PUBLIC_URL}/`}>{engkor ? 'Mainpage' : '메인페이지'}</Link></button>
                     <button className={styles.button_C} onClick={()=>{
                         setEngKor(engkor ? false : true);
                         }}>{engkor ? "한글" : "ENG"}</button>

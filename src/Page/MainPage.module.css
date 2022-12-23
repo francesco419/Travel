@@ -77,7 +77,25 @@
 }
 
 @media screen and (max-width:767px){
+    .container{
+        margin:150px 0 0 0;
+        height: 100%;
+    }
     .visualbox{
         width:auto;
+    }
+    .continent svg{
+        width: 200px;
+        height:350px;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1023px){
+    .visualbox{
+        width:auto;
+    }
+    .continent svg{
+        width: 500px;
+        height:500px;
     }
 }
