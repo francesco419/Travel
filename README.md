@@ -246,4 +246,56 @@
   - 디자인 조정. (221218)
   - 반응형 웹 작업. (221222)
 
-- 이외 페이지 반응형 웹 작업. (221222) / (221223)
+- 이외 페이지 반응형 웹 작업. (221222) header, introduction / (221223) Mainpage, Asia / (221224) Country, Customer
+
+  - 반응형 페이지 작업을 위해 Responsively 프로그램을 사용.
+
+- Asia페이지에서 찾고자 하는 국가를 클릭하면 페이지 오류 발생 => router.ts:11 No routes matched location "/Travel/Country/#%#%#%#%#%#%#%#%#%#%#%#%". (221224)
+
+  - 처음에는 링크에 문제가 있는것으로 잘못 파악하여, 해당 코드를 수정하였다. 서버에서 링크를 주고 받을때 인코딩과 디코딩이 되어야하는데 이를 해결하기위해 `decodeURL()`과 `encodeURL()`을 사용하려고 하였지만, 결국 자신이 만든 서버가 아니기에 해결할 수가 없음.
+  - 콘솔창에 스크립트 혹은 엘레먼트 오류가 아닌 라우터에러인 것을 확인 하고는 주소설정에 문제가 있다는것을 파악하였다.
+    ```js
+    child.href = `${process.env.PUBLIC_URL}/Country/${Country[num].listKOR[i]}`;
+    ```
+    - 잘못된 주소 설정이 오류의 문제점이였는데, 위 코드는 `${process.env.PUBLIC_URL}`를 넣음으로서 오류가 발생하게 되었다.
+    - 페이지를 만들때 기본적으로 모든페이지가 `${process.env.PUBLIC_URL}`를 기반으로 만들어지는데, 이를 중복으로 넣게 된것과 같은 것으로, No routes matched location "/Travel/Country/#%#%#%#%#%#%#%#%#%#%#%#%"에서 Travel이 들어간것이 이를 말해준다.
+    - `${process.env.PUBLIC_URL}`삭제후 정상적으로 작동 하는것을 확인.
+
+- Header의
+
+  ```js
+  JSON.parse(localStorage.getItem("VisitHistory")).map((item) => (
+    <History data={item} />
+  ));
+  ```
+
+  에서 로컬스토리지에 'VisitHistory'가 없을시 오류가 발생함으로, 삼항연산자를 사용해 이를 해결하였다.(221224)
+
+  ```js
+  JSON.parse(localStorage.getItem("VisitHistory"))
+    ? JSON.parse(localStorage.getItem("VisitHistory")).map((item) => (
+        <History data={item} />
+      ))
+    : null;
+  ```
+
+  - 하지만 Country 방문시, 방문 나라를 로컬스토리지에 저장하는 코드에서 최초저장시 배열로 저장이 안되어 '.map()'함수가작동되지 않아서 오류가 발생되어
+
+  ```js
+  if(JSON.parse(localStorage.getItem('VisitHistory'))===null){
+           let arr = [params.id];//최초저장시 배열
+           localStorage.setItem('VisitHistory',JSON.stringify(arr));
+           console.log('배열 처음 생성');
+       }else{
+           let visit = JSON.parse(localStorage.getItem('VisitHistory'));
+           /* if(Array.isArray(JSON.parse(localStorage.getItem('VisitHistory')))){
+               visit = JSON.parse(localStorage.getItem('VisitHistory'));
+           }else{
+               visit = [JSON.parse(localStorage.getItem('VisitHistory'))];
+           } */ //배열확인코드 삭제
+           let index = visit.indexOf(params.id);
+  ```
+
+  'let arr = [params.id];'을 추가하여 최초 저장시 배열로 저장이 되도록하고, 두번째 저장시부터 이미 저장된 데이터가 배열인지 아닌지를 확인하는 코드를 삭제하였다.
+
+- 페이지를 호스트 하기 이전에 오류가 발생하지 않더라도 호스트 한 이후에 지속적으로 오류가 발생하고 있음.(221224)

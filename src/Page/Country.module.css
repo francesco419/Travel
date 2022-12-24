@@ -208,3 +208,78 @@ input[type='text']:focus{
 input[type='text']::placeholder{
     color: #000000;
 }
+
+@media screen and (max-width:767px){
+    .box{
+        background-color: #802045;
+        margin: 0;
+    }
+    .container{
+        max-width: 767px;
+        width: auto;
+        padding:0;
+        border: 0;
+        margin:170px;
+    }
+    .map{
+        width: auto;
+        border: 5px solid #f8f0f2;
+    }
+    .mainimage{
+        width: auto;
+    }
+    .imagebox{
+        width:33%
+    }
+    .exchange{
+        width: 100%;
+    }
+    .exchange_box{
+        max-width: 350px;
+        margin:0 auto;
+    }
+    .exdata{
+        display: none;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1023px){
+    .box{
+        padding: 0 0 170px 0;
+    }
+    .container{
+        width: auto;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        border-top: 10px double #802045;
+        border-bottom: 10px double #802045;
+    }
+    .map{
+        width: auto;
+    }
+    .mainimage{
+        width: auto;
+    }
+    .imagebox{
+        width:33%
+    }
+    .info{
+        display: flex;
+        flex-wrap: wrap;
+        width: auto;
+        text-align: center;
+        margin: 20px 0 0 0;
+        line-height: 250%;
+    }
+    .info_box{
+        display: flex;
+        margin: 10px 10px;
+        border: 2px solid #802045;
+        border-radius: 15px;
+        flex:1 1 40%;
+    }
+    .alarm{
+        margin: 20px auto 0 auto;
+    }
+}

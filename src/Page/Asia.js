@@ -56,7 +56,7 @@ function Asia(){
 
             if(alpha===listENG[i].charAt(0)){
                 child=document.createElement("a");
-                child.href=(`${process.env.PUBLIC_URL}/Country/${(Country[num].listKOR[i])}`);
+                child.href=(`/Country/${(Country[num].listKOR[i])}`);
                 child.className = `${Country[num].listENG[i]}`;
                 child.textContent = `${listKOR[i]}`;
                 alphaElement.append(child);
@@ -71,7 +71,7 @@ function Asia(){
                 parent.append(alphaElement);
                 //부모하나 만들고
                 child=document.createElement("a");
-                child.href=(`${process.env.PUBLIC_URL}/Country/${(Country[num].listKOR[i])}`);
+                child.href=(`/Country/${(Country[num].listKOR[i])}`);
                 child.className = `${Country[num].listENG[i]}`;
                 child.textContent = `${listKOR[i]}`;
                 alphaElement.append(child);

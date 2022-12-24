@@ -43,6 +43,7 @@ function Header({}){
             </div>
         )
     }
+    console.log(JSON.parse(localStorage.getItem('VisitHistory')))
     return(
         <div className={styles.container}>
             <nav className={styles.fullbar}>

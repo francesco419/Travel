@@ -13,9 +13,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={`/Country/:id`} element={<Country/>} />
-        <Route path={`/Customer/`} element={<Customer/>} />
-        <Route path={`/Asia`} element={<Asia/>} />
+        <Route path="/Country/:id" element={<Country/>} />
+        <Route path="/Customer/" element={<Customer/>} />
+        <Route path="/Asia" element={<Asia/>} />
         <Route path={`${process.env.PUBLIC_URL}/`} element={<MainPage/>} />
       </Routes>
     </BrowserRouter>
