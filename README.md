@@ -252,20 +252,18 @@
 
 - Asia페이지에서 찾고자 하는 국가를 클릭하면 페이지 오류 발생 => router.ts:11 No routes matched location "/Travel/Country/#%#%#%#%#%#%#%#%#%#%#%#%". (221224)
 
-  ~~
+  - ~~처음에는 링크에 문제가 있는것으로 잘못 파악하여, 해당 코드를 수정하였다. 서버에서 링크를 주고 받을때 인코딩과 디코딩이 되어야하는데 이를 해결하기위해 `decodeURL()`과 `encodeURL()`을 사용하려고 하였지만, 결국 자신이 만든 서버가 아니기에 해결할 수가 없음.~~
+  - ~~콘솔창에 스크립트 혹은 엘레먼트 오류가 아닌 라우터에러인 것을 확인 하고는 주소설정에 문제가 있다는것을 파악하였다.~~
 
-  - 처음에는 링크에 문제가 있는것으로 잘못 파악하여, 해당 코드를 수정하였다. 서버에서 링크를 주고 받을때 인코딩과 디코딩이 되어야하는데 이를 해결하기위해 `decodeURL()`과 `encodeURL()`을 사용하려고 하였지만, 결국 자신이 만든 서버가 아니기에 해결할 수가 없음.~~
-  - 콘솔창에 스크립트 혹은 엘레먼트 오류가 아닌 라우터에러인 것을 확인 하고는 주소설정에 문제가 있다는것을 파악하였다.
     ```js
-    child.href = `${process.env.PUBLIC_URL}/Country/${Country[num].listKOR[i]}`;
+    ~~child.href = `${process.env.PUBLIC_URL}/Country/${Country[num].listKOR[i]}`;~~
     ```
-    - 잘못된 주소 설정이 오류의 문제점이였는데, 위 코드는 `${process.env.PUBLIC_URL}`를 넣음으로서 오류가 발생하게 되었다.
-    - 페이지를 만들때 기본적으로 모든페이지가 `${process.env.PUBLIC_URL}`를 기반으로 만들어지는데, 이를 중복으로 넣게 된것과 같은 것으로, No routes matched location "/Travel/Country/#%#%#%#%#%#%#%#%#%#%#%#%"에서 Travel이 들어간것이 이를 말해준다.
-    - `${process.env.PUBLIC_URL}`삭제후 정상적으로 작동 하는것을 확인.
 
-  ~~
+    - ~~잘못된 주소 설정이 오류의 문제점이였는데, 위 코드는 `${process.env.PUBLIC_URL}`를 넣음으로서 오류가 발생하게 되었다.~~
+    - ~~페이지를 만들때 기본적으로 모든페이지가 `${process.env.PUBLIC_URL}`를 기반으로 만들어지는데, 이를 중복으로 넣게 된것과 같은 것으로, No routes matched location "/Travel/Country/#%#%#%#%#%#%#%#%#%#%#%#%"에서 Travel이 들어간것이 이를 말해준다.~~
+    - ~~`${process.env.PUBLIC_URL}`삭제후 정상적으로 작동 하는것을 확인.~~
 
-  - 퍼블리싱한 페이지에서는 정상적으로 작동하지 않는 문제 발생.
+  - 퍼블리싱한 페이지에서는 정상적으로 작동하지 않는 문제 발생.(221228)
 
     - 예상되는 이유로는 이전의 나라별 컴포넌트들은
 
@@ -280,30 +278,42 @@
     - 이를 해결하기위해 직접 위 코드들을 함수형 컴포넌트로 대체하여 리엑트라우터의 링크 컴포넌트를 사용하려고 한다.
 
     ```js
-    function CountryComponent() {
-      const arrENG = Country[xcountry].listENG;
-      const arrKOR = Country[xcountry].listKOR;
+    function CountryComponent({ set }) {
+      function ObjectAdd(arr1, arr2) {
+        let arr3 = [];
+        for (let i = 0; i < arr1.length; i++) {
+          arr3.push({
+            id: i,
+            ENG: arr1[i],
+            KOR: arr2[i],
+          });
+        }
+        return arr3;
+      } //영어 한글 두가지를 한개의 객체로 만들기.
+      const test = ObjectAdd(
+        Country[xcountry].listENG,
+        Country[xcountry].listKOR
+      );
+      console.log(test);
       const arr = Array.from({ length: 26 }, (v, i) =>
         String.fromCharCode(i + 65)
       );
-      function alphait(alpha, arr1, arr2) {
+      function alphait(alpha, arr) {
+        let FilterArr = arr.filter((data) => data.ENG.charAt(0) === alpha);
         return (
           <div>
-            {arr1.filter((data) => data.charAt(0) === alpha).length !== 0 ? (
-              //알파벳에 해당하는 나라이름이 존재하지 않을시 결과값 null.
+            {FilterArr.length !== 0 ? (
               <div style={{ margin: "10px 0", width: "120px" }}>
                 <div className={styles.Country_alpha}>--{alpha}--</div>
                 <div className={styles.Country_Container}>
-                  {arr1
-                    .filter((data) => data.charAt(0) === alpha) //해당알파벳과 일치하는 나라이름 필터.
-                    .map((item, index) => (
-                      <Link
-                        to={`/Country/${arr2[index]}`}
-                        className={styles.Country_Link}
-                      >
-                        {item}
-                      </Link>
-                    ))}
+                  {FilterArr.map((item) => (
+                    <Link
+                      to={`/Country/${item.KOR}`}
+                      className={styles.Country_Link}
+                    >
+                      {set ? item.ENG : item.KOR}
+                    </Link>
+                  ))}
                 </div>
               </div>
             ) : null}
@@ -313,13 +323,13 @@
 
       return (
         <div className={styles.cover}>
-          {arr.map((alpha) => alphait(alpha, arrENG, arrKOR))}
+          {arr.map((alpha) => alphait(alpha, test))}
         </div>
       );
     }
     ```
 
-    - 위 코드를 사용함으로서 이전과 똑같은 UI를 나타내지만 함수형 컴포넌트를 사용한 방식으로 제작하였다.
+    - 위 코드를 사용함으로서 이전과 똑같은 UI를 나타내지만 함수형 컴포넌트를 사용한 방식으로 제작하였다.(221228)
 
 - Header의
 

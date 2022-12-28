@@ -111,29 +111,42 @@ function Asia() {
     return <p>{temp}</p>;
   }
 
-  function CountryComponent() {
-    const arrENG = Country[xcountry].listENG;
-    const arrKOR = Country[xcountry].listKOR;
+  function CountryComponent({ set }) {
+    function ObjectAdd(arr1, arr2) {
+      let arr3 = [];
+      for (let i = 0; i < arr1.length; i++) {
+        arr3.push({
+          id: i,
+          ENG: arr1[i],
+          KOR: arr2[i],
+        });
+      }
+      return arr3;
+    }
+    const test = ObjectAdd(
+      Country[xcountry].listENG,
+      Country[xcountry].listKOR
+    );
+    console.log(test);
     const arr = Array.from({ length: 26 }, (v, i) =>
       String.fromCharCode(i + 65)
     );
-    function alphait(alpha, arr1, arr2) {
+    function alphait(alpha, arr) {
+      let FilterArr = arr.filter((data) => data.ENG.charAt(0) === alpha);
       return (
         <div>
-          {arr1.filter((data) => data.charAt(0) === alpha).length !== 0 ? (
+          {FilterArr.length !== 0 ? (
             <div style={{ margin: "10px 0", width: "120px" }}>
               <div className={styles.Country_alpha}>--{alpha}--</div>
               <div className={styles.Country_Container}>
-                {arr1
-                  .filter((data) => data.charAt(0) === alpha)
-                  .map((item, index) => (
-                    <Link
-                      to={`/Country/${arr2[index]}`}
-                      className={styles.Country_Link}
-                    >
-                      {item}
-                    </Link>
-                  ))}
+                {FilterArr.map((item) => (
+                  <Link
+                    to={`/Country/${item.KOR}`}
+                    className={styles.Country_Link}
+                  >
+                    {set ? item.ENG : item.KOR}
+                  </Link>
+                ))}
               </div>
             </div>
           ) : null}
@@ -143,7 +156,7 @@ function Asia() {
 
     return (
       <div className={styles.cover}>
-        {arr.map((alpha) => alphait(alpha, arrENG, arrKOR))}
+        {arr.map((alpha) => alphait(alpha, test))}
       </div>
     );
   }
@@ -156,7 +169,7 @@ function Asia() {
           <div className={styles.name}>
             <ContinentName />
           </div>
-          <CountryComponent />
+          <CountryComponent set={engkor} />
         </div>
         <div className={styles.change_C}>
           <button className={styles.button_C}>
