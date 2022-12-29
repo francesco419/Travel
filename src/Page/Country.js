@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import { Countries } from "../Component/DataInfo";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+const CURRENCY_API_KEY = process.env.REACT_APP_CURRENCY_API;
 
 function Country() {
   const params = useParams();
@@ -49,7 +50,7 @@ function Country() {
         "https://api.apilayer.com/fixer/latest",
         {
           params: {
-            apikey: "2UEhrO9y09rUUmcarbN1ptUzT6u8t6xw",
+            apikey: CURRENCY_API_KEY,
             base: "KRW",
             symbols: symbol,
           },
