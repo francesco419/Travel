@@ -41,19 +41,6 @@ function Country() {
       setstate(temp);
       setSymbol(state.currency);
     }
-    /* setstate(() => {
-      if (useLocation().state.Object) {
-        return useLocation().state.Object;
-      } else {
-        for (let i = 0; i < Countries.length; i++) {
-          for (let j = 0; j < Countries.list_Currency[j]; j++) {
-            if (params.id === Countries.list_Currency[j].KOR) {
-              return Countries.list_Currency[j];
-            }
-          }
-        }
-      }
-    }); */
   }, []);
 
   const getCurrency = async () => {
@@ -152,6 +139,11 @@ function Country() {
         localStorage.setItem("VisitHistory", JSON.stringify(visit));
         //console.log("새로넣기");
       }
+    }
+    console.log(JSON.parse(localStorage.getItem("VisitHistory")).length);
+    if (JSON.parse(localStorage.getItem("VisitHistory")).length > 10) {
+      let del = JSON.parse(localStorage.getItem("VisitHistory")).slice(1);
+      localStorage.setItem("VisitHistory", JSON.stringify(del));
     }
   };
 
