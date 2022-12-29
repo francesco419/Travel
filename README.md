@@ -1,9 +1,16 @@
 # 1
 
 - 사용하는 API
+
   - 공공데이터포털
-    - 외교부\_국가별 기본정보
-    - 외교부\_국가/지역별 여행경보
+    - 외교부\_국가별 기본정보.
+    - 외교부\_국가/지역별 여행경보.
+  - Fixer API (환율정보).
+
+- 그 외의 데이터 (직접 수집)
+  - 국가 영어/한글 명칭.
+  - 대륙별 소속 국가.
+  - 국가별 통화(기호).
 
 ## 1.1
 
@@ -369,3 +376,85 @@
   'let arr = [params.id];'을 추가하여 최초 저장시 배열로 저장이 되도록하고, 두번째 저장시부터 이미 저장된 데이터가 배열인지 아닌지를 확인하는 코드를 삭제하였다.
 
 - 페이지를 호스트 하기 이전에 오류가 발생하지 않더라도 호스트 한 이후에 지속적으로 오류가 발생하고 있음.(221224)
+
+## 2.4
+
+- Fixer APi로 환율정보 로드.
+- Fixer API로 불러온 데이터를 원활하게 사용하기 위해서는 통화 기호(ex. USD, KRW 등)가 필수적이므로 데이터 수집 및 편집을 통해 모든정보를 가지는 객체를 만들어야 한다.
+
+  - 수작업으로 하나하나의 데이터를 가져오기보다는 코드를 이용하여 편집한다.
+  - 이전에 있던 DataInfo.js의 국가별 영문/한글 명칭을 반복문 코드를 통해서 합친다.
+
+  ```js
+  for (let i = 0; i < ENG.length; i++) {
+    let arr = [];
+    arr.push({
+      id: i,
+      ENG: ENG[i],
+      KOR: KOR[i],
+    });
+  } //하나의 객체 배열로 통합.
+  ```
+
+  - 그리고 통화 기호를 위해 https://www.exchangerate-api.com/docs/supported-currencies에서 All Supported Currencies 부분를 전체 복사하여 js파일에 붙여널기 한 이후, 멀티커서(다중 커서/셀렉트)를 이용하여 ` { id: "KRW	South Korean Won	South Korea" },`과 같은 문자열을 가지는 형태를 만들어 또다른 객체 배열로 만든 후, 위에서 제작한 국가명칭과 합친다.
+
+  ```js
+  function ObjectAdd(arr1, arr2) {
+    let arr3 = [];
+    for (let i = 0; i < arr1.length; i++) {
+      for (let j = 0; j < arr2.length; j++) {
+        let temp;
+        if (arr2[j].id.includes(arr1[i].ENG)) {
+          temp = arr2[j].id.slice(0, 3);
+          arr3.push({
+            id: i,
+            ENG: arr1[i].ENG,
+            KOR: arr1[i].KOR,
+            currency: temp,
+          });
+          break;
+        } else if (j === arr2.length - 1) {
+          arr3.push({
+            id: i,
+            ENG: arr1[i].ENG,
+            KOR: arr1[i].KOR,
+            currency: null,
+          });
+        }
+      }
+    }
+    return arr3;
+  }
+  ```
+
+  - arr1은 국가명칭, arr2는 통화 기호 객체 배열이며, `(arr2[j].id.includes(arr1[i].ENG))`를 사용하여 문자열에 국가명칭이 포함되면, 명칭을 통화 기호와 함께 객체로 배열에 넣어주고, 몇몇 국가들은 다른 나라의 통화를 사용하기에(유로(EUR) 혹은 서아프리카 통화(XOF) 와 같은 지역 공통 통화)이런 국가들은 currency에 null을 넣음으로, 이후에 직접 넣는 방식을 사용하였다.
+  - 위 방식으로 만든 모든 객체 배열은 console.log()를 사용해 브라우저 콘솔창에 표시하고, '우클릭-object복사'로 가져왔다.
+
+  - Asia페이지에서 Country페이지로 라우터를 통해 이동할때 통화 정보객체를 state로 넘겨주는 방식을 사용하여 Country페이지에서 useLocation을 사용하여 state로 넘긴 데이터를 사용한다.
+
+- Fixer API 데이터로드는 완료했으나, Monthly Usage가 적음으로, exchange.js에 저장한 환율정보를 이용한다.
+
+- Object의 key에 접근시 key를 문자열로 사용시 오류 발생. key가 문자열로 저장되어있지 않기때문이므로, 문자열로 접근시 Object.key가 아닌 Object[key]로 접근이 가능하다.
+
+- Header의 방문국가 탭을 통해 페이지를 이동하면 Country페이지에 state가 전달되지 않아 로드 오류가 발생함으로, state가 null일시 해당 국가와 맞는 객체를 반복문을 통해 찾아내어 state에 할당한다.
+
+```js
+if (state === undefined) {
+  let temp;
+  for (let i = 0; i < Countries.length; i++) {
+    for (let j = 0; j < Countries[i].list_Currency[j]; j++) {
+      if (params.id === Countries[i].list_Currency[j].KOR) {
+        temp = Countries[i].list_Currency[j];
+      }
+    }
+  }
+  setstate(temp);
+  setSymbol(state.currency);
+}
+```
+
+해당 코드는 useEffect에 넣어준다.
+
+# 3
+
+- redux 및 typescript작업을 순차적으로 하는것을 목표로 한다.

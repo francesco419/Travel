@@ -1,4 +1,4 @@
-import { Country } from "../Component/DataInfo";
+import { Countries } from "../Component/DataInfo";
 import { useEffect, useState } from "react";
 import styles from "./Asia.module.css";
 import React from "react";
@@ -10,82 +10,7 @@ import Header from "../Object/Header";
 function Asia() {
   const location = useLocation();
   const [engkor, setEngKor] = useState(true);
-  console.log(location.state);
   const [xcountry, setXcountry] = useState(location.state ? location.state : 0);
-
-  /* const sortout =(bool)=>{
-        console.log(Country[0].listENG);
-        const listENG = Country[0].listENG;
-        let listKOR = bool ? Country[0].listENG : Country[0].listKOR;
-        let alpha='A';
-        for(let i=0;i<listENG.length;i++){
-            if(i===0){
-                console.log(`-${alpha}-`)
-            }
-
-            if(alpha===listENG[i].charAt(0)){
-                console.log(`${listKOR[i]}\n`);
-            }else{
-                alpha=listENG[i].charAt(0);
-                console.log(`\n-${listENG[i].charAt(0)}-\n`)
-                console.log(`${listKOR[i]}\n`);
-            }
-        }
-    } */
-  /*     const sortout2 =(bool,num)=>{
-        let parent = document.querySelector(".parent");
-        let alphaElement = null;
-        let child = null;
-
-        const listENG = Country[num].listENG;
-        let listKOR = bool ? Country[num].listENG : Country[num].listKOR;
-        let alpha='A';
-
-        for(let i=0;i<listENG.length;i++){
-            if(i===0){
-                alphaElement=document.createElement("h1");
-                alphaElement.className = `${styles.alpha}`;
-                alphaElement.textContent = `-${alpha}-`;
-                parent.append(alphaElement);
-            }
-
-            if(alpha===listENG[i].charAt(0)){
-                child=document.createElement("a");
-                child.href=(`/Country/${(Country[num].listKOR[i])}`);
-                child.className = `${Country[num].listENG[i]}`;
-                child.textContent = `${listKOR[i]}`;
-                alphaElement.append(child);
-            }else{
-                alpha=listENG[i].charAt(0);
-                //알파켓먼저 넣고
-                alphaElement=document.createElement("h1");
-                alphaElement.className = `${styles.alpha}`;
-                alphaElement.textContent = `-${alpha}-`;
-                parent.append(alphaElement);
-                //부모하나 만들고
-                child=document.createElement("a");
-                child.href=(`/Country/${(Country[num].listKOR[i])}`);
-                child.className = `${Country[num].listENG[i]}`;
-                child.textContent = `${listKOR[i]}`;
-                alphaElement.append(child);
-                //자식노드 넣어주고
-            }
-        }
-    } */
-
-  /*     useEffect(()=>{
-        removeAll();
-        sortout2(engkor,xcountry);
-        console.log(engkor);
-    },[]) */
-
-  const removeAll = () => {
-    console.log("removeAll");
-    let elementR = document.querySelector(".parent");
-    while (elementR.hasChildNodes()) {
-      elementR.removeChild(elementR.firstChild);
-    }
-  };
 
   const changeCountry = (num) => {
     if (xcountry === num) {
@@ -112,25 +37,41 @@ function Asia() {
   }
 
   function CountryComponent({ set }) {
+    /* 
     function ObjectAdd(arr1, arr2) {
       let arr3 = [];
       for (let i = 0; i < arr1.length; i++) {
-        arr3.push({
-          id: i,
-          ENG: arr1[i],
-          KOR: arr2[i],
-        });
+        for (let j = 0; j < arr2.length; j++) {
+          let temp;
+          if (arr2[j].id.includes(arr1[i].ENG)) {
+            temp = arr2[j].id.slice(0, 3);
+            arr3.push({
+              id: i,
+              ENG: arr1[i].ENG,
+              KOR: arr1[i].KOR,
+              currency: temp,
+            });
+            break;
+          } else if (j === arr2.length - 1) {
+            arr3.push({
+              id: i,
+              ENG: arr1[i].ENG,
+              KOR: arr1[i].KOR,
+              currency: null,
+            });
+          }
+        }
       }
       return arr3;
     }
-    const test = ObjectAdd(
-      Country[xcountry].listENG,
-      Country[xcountry].listKOR
-    );
-    console.log(test);
+    const poop = ObjectAdd(test, currncyId);
+    console.log(poop);
+    */ //국가 및 통화 합치기
+
+    const test = Countries[xcountry].list_Currency;
     const arr = Array.from({ length: 26 }, (v, i) =>
       String.fromCharCode(i + 65)
-    );
+    ); //알파벳 배열
     function alphait(alpha, arr) {
       let FilterArr = arr.filter((data) => data.ENG.charAt(0) === alpha);
       return (
@@ -142,6 +83,7 @@ function Asia() {
                 {FilterArr.map((item) => (
                   <Link
                     to={`/Country/${item.KOR}`}
+                    state={{ Object: item }}
                     className={styles.Country_Link}
                   >
                     {set ? item.ENG : item.KOR}
@@ -211,3 +153,77 @@ function Asia() {
 }
 
 export default Asia;
+
+/* const sortout =(bool)=>{
+      console.log(Country[0].listENG);
+      const listENG = Country[0].listENG;
+      let listKOR = bool ? Country[0].listENG : Country[0].listKOR;
+      let alpha='A';
+      for(let i=0;i<listENG.length;i++){
+          if(i===0){
+              console.log(`-${alpha}-`)
+          }
+
+          if(alpha===listENG[i].charAt(0)){
+              console.log(`${listKOR[i]}\n`);
+          }else{
+              alpha=listENG[i].charAt(0);
+              console.log(`\n-${listENG[i].charAt(0)}-\n`)
+              console.log(`${listKOR[i]}\n`);
+          }
+      }
+  } */
+/*     const sortout2 =(bool,num)=>{
+      let parent = document.querySelector(".parent");
+      let alphaElement = null;
+      let child = null;
+
+      const listENG = Country[num].listENG;
+      let listKOR = bool ? Country[num].listENG : Country[num].listKOR;
+      let alpha='A';
+
+      for(let i=0;i<listENG.length;i++){
+          if(i===0){
+              alphaElement=document.createElement("h1");
+              alphaElement.className = `${styles.alpha}`;
+              alphaElement.textContent = `-${alpha}-`;
+              parent.append(alphaElement);
+          }
+
+          if(alpha===listENG[i].charAt(0)){
+              child=document.createElement("a");
+              child.href=(`/Country/${(Country[num].listKOR[i])}`);
+              child.className = `${Country[num].listENG[i]}`;
+              child.textContent = `${listKOR[i]}`;
+              alphaElement.append(child);
+          }else{
+              alpha=listENG[i].charAt(0);
+              //알파켓먼저 넣고
+              alphaElement=document.createElement("h1");
+              alphaElement.className = `${styles.alpha}`;
+              alphaElement.textContent = `-${alpha}-`;
+              parent.append(alphaElement);
+              //부모하나 만들고
+              child=document.createElement("a");
+              child.href=(`/Country/${(Country[num].listKOR[i])}`);
+              child.className = `${Country[num].listENG[i]}`;
+              child.textContent = `${listKOR[i]}`;
+              alphaElement.append(child);
+              //자식노드 넣어주고
+          }
+      }
+  } */
+
+/*     useEffect(()=>{
+      removeAll();
+      sortout2(engkor,xcountry);
+      console.log(engkor);
+  },[]) */
+
+/* const removeAll = () => {
+    console.log("removeAll");
+    let elementR = document.querySelector(".parent");
+    while (elementR.hasChildNodes()) {
+      elementR.removeChild(elementR.firstChild);
+    }
+  }; */
