@@ -286,7 +286,6 @@ export const Countries = [
         currency: "YER",
       },
     ],
-    count: 47,
   },
   {
     name: "Europe",
@@ -580,7 +579,6 @@ export const Countries = [
         currency: null,
       },
     ],
-    count: 48,
   },
   {
     name: "Oceania",
@@ -670,7 +668,6 @@ export const Countries = [
         currency: "VUV",
       },
     ],
-    count: 14,
   },
   {
     name: "America",
@@ -886,7 +883,6 @@ export const Countries = [
         currency: "VES",
       },
     ],
-    count: 35,
   },
   {
     name: "Africa",
@@ -1216,7 +1212,6 @@ export const Countries = [
         currency: "ZWL",
       },
     ],
-    count: 54,
   },
 ];
 

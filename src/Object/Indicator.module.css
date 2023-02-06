@@ -1,0 +1,53 @@
+.indicator-comp {
+  position: absolute;
+  top: 20vh;
+  right: 2vw;
+  height: 20vh;
+  transition: all 1s;
+  background-color: var(--color-cerilean);
+  border-radius: 15px;
+}
+
+.indicator {
+  height: 18vh;
+  padding: 10px 0 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.indicator-comp button {
+  width: 5vw;
+  border: 0;
+  border-radius: 0 0 15px 15px;
+  margin: 2px 0 0;
+  background-color: var(--color-cerilean);
+  color: #fff;
+}
+
+.indicator h3 {
+  color: var(--color-hunter);
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+
+.indicator-history {
+}
+
+.history-button {
+  border: 0;
+  background-color: #00000000;
+}
+
+.history-content {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+.history-content a {
+  color: var(--color-background);
+  text-decoration: none;
+}
+
+.history-content a:hover {
+  color: #fff;
+}

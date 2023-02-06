@@ -2,6 +2,60 @@ div {
   font-size: 12px;
 }
 
+/*new*/
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 130px 0 0 0;
+  padding: 0 20px 100px;
+  height: 100%;
+}
+
+.block-list {
+  display: flex;
+  align-items: center;
+}
+
+.block-list h2 {
+  color: #802045;
+  width: 45%;
+  font-size: 3vw;
+}
+
+.span-left {
+  width: 2vw;
+  height: 10vw;
+  border-radius: 0 15px 15px 0;
+  background-color: #802045;
+  margin: 0 20px 0 0;
+}
+.span-right {
+  width: 2vw;
+  height: 10vw;
+  border-radius: 15px 0 0 15px;
+  background-color: #802045;
+  margin: 0 20px;
+}
+.block-list div {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 50%;
+  padding: 0 20px;
+}
+
+.block-list p {
+  margin: 0;
+}
+.block-list p:hover {
+  color: #fff !important;
+  cursor: pointer;
+}
+
+/*---*/
+
 .alpha a {
   display: block;
   font-size: 12px;
@@ -14,18 +68,6 @@ div {
   color: #00b9b9;
 }
 
-h1 {
-  width: 150px;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 170px 0 0 0;
-  height: 100%;
-}
 .cover {
   display: flex;
   position: relative;
