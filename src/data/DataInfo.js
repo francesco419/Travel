@@ -335,7 +335,7 @@ export const Countries = [
       {
         id: 7,
         ENG: "Bosnia and Herzegovina",
-        KOR: "보스니아 헤르체고비나",
+        KOR: "보스니아헤르체고비나",
         currency: "BAM",
       },
       {

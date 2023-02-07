@@ -38,7 +38,7 @@ export const mainImage = [
   },
   {
     id: 1,
-    url: "https://i.pinimg.com/564x/79/23/9e/79239efa91dc5bb7a91d1dae95912f4a.jpg",
+    url: "https://i.pinimg.com/564x/97/60/a1/9760a15274bcb3218f6fc863bc866e11.jpg",
   },
   {
     id: 2,

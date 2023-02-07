@@ -468,4 +468,12 @@ if (state === undefined) {
 
 # 3.2.1 (23.02.06)
 
-- Country페이지 리뉴얼.
+- Country페이지 리뉴얼 1.
+- 쓰토틀링 / 디바운싱.
+
+# 3.2.2 (23.02.07)
+
+- Country페이지 리뉴얼 2.
+- 공공데이터포털을 통한 나라별 기본정보의 데이터 부실로 다른 데이터 모색
+  - https://rapidapi.com/natkapral/api/countries-cities/ 의 데이터가 적합하나 영어베이스.
+- redux 필요성.

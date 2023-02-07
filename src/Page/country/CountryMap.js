@@ -1,5 +1,5 @@
-import styles from "../Page/Country.module.css";
-import { useEffect, useState } from "react";
+import styles from "./Country.module.css";
+import { useState } from "react";
 
 export default function CountryMap({ props }) {
   const [imagedata, setImagedata] = useState(null);
@@ -11,7 +11,7 @@ export default function CountryMap({ props }) {
           onClick={() => {
             document.getElementById("popupimg").style.display = "block";
           }}
-          src={imagedata ? imagedata : props.data[0].flag_download_url}
+          src="https://www.acprail.com/wp-content/uploads/2018/04/swiss-pass.jpg" //{imagedata ? imagedata : props.data[0].flag_download_url}
         />
       </div>
       <div id="popupimg" className={styles.popup_window}>

@@ -1,8 +1,6 @@
-import "./App.css";
-import MainPage from "./Page/MainPage.js";
-import Asia from "./Page/Asia.js";
-import Country from "./Page/Country";
-import Customer from "./Page/Customer";
+import MainPage from "./Page/mainpage/MainPage.js";
+import CountryList from "./Page/countryList/CountryList.js";
+import Country from "./Page/country/Country";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -10,8 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/Country/:cont/:id" element={<Country />} />
-        <Route path="/Customer/" element={<Customer />} />
-        <Route path="/Asia" element={<Asia />} />
+        <Route path="/CountryList" element={<CountryList />} />
         <Route path={`${process.env.PUBLIC_URL}`} element={<MainPage />} />
       </Routes>
     </BrowserRouter>

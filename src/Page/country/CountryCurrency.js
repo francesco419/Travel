@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
-import { exchange } from "../data/exchange";
-import styles from "../Page/Country.module.css";
-import { Countries } from "../data/DataInfo";
+import { exchange } from "../../data/exchange";
+import styles from "./Country.module.css";
+import { Countries } from "../../data/DataInfo";
+import axios from "axios";
+
+const CURRENCY_API_KEY = process.env.REACT_APP_CURRENCY_API;
 
 export default function CountryCurrency({ sprop }) {
   const [valueExchange, setValueExchange] = useState(1);
   const [valueKRW, setValueKRW] = useState(1000);
   const [symbol, setSymbol] = useState();
+  const [currencyAPI, setCurrencyAPI] = useState();
 
   useEffect(() => {
     setCurrentCountry();
+    //getCurrency();
   }, []);
 
   const setCurrentCountry = () => {
@@ -32,7 +37,7 @@ export default function CountryCurrency({ sprop }) {
     setValueExchange((exchange.rates[currency] * 1000).toFixed(2)); //1000원에 따른 환율 적용
     setValueKRW(1000); //초기 값 1000원
   };
-  /*  const getCurrency = async () => {
+  const getCurrency = async () => {
     try {
       const response = await axios.get(
         "https://api.apilayer.com/fixer/latest",
@@ -58,7 +63,7 @@ export default function CountryCurrency({ sprop }) {
       });
       console.log(`Error : ${e.code}`);
     }
-  }; */
+  };
 
   const valueHandler = ({ target: { value } }) => {
     setValueExchange(value);
@@ -84,24 +89,19 @@ export default function CountryCurrency({ sprop }) {
   };
 
   return (
-    <div className={styles["exchange"]}>
-      <div className={styles["exchange_box"]}>
-        <div className={styles["exchange_info"]}>
-          <span>{symbol}</span>
-          <input
-            type="text"
-            value={valueExchange}
-            onChange={valueHandler}
-          ></input>
-        </div>
-        <div className={styles["exchange_info"]}>
-          <span>KRW</span>
-          <input
-            type="text"
-            value={valueKRW}
-            onChange={valueKRWHandler}
-          ></input>
-        </div>
+    <div className={styles["exchange-box"]}>
+      <h2>환율계산기</h2>
+      <div className={styles["exchange-info"]}>
+        <span>{symbol}</span>
+        <input
+          type="text"
+          value={valueExchange}
+          onChange={valueHandler}
+        ></input>
+      </div>
+      <div className={styles["exchange-info"]}>
+        <span>KRW</span>
+        <input type="text" value={valueKRW} onChange={valueKRWHandler}></input>
       </div>
     </div>
   );

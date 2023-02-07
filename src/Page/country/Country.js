@@ -1,17 +1,18 @@
 import axios from "axios";
-import Header from "../Object/Header";
+import Header from "../../Component/Header";
 import styles from "./Country.module.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CountryCurrency from "../Component/CountryCurrency";
-import CountryMap from "../Component/CountryMap";
-import CountryInfo from "../Component/CountryInfo";
-import Indicator from "../Object/Indicator";
+import CountryCurrency from "./CountryCurrency";
+import CountryMap from "./CountryMap";
+import CountryInfo from "./CountryInfo";
+import Indicator from "../../Component/Indicator";
+import AlarmDetail from "./AlarmDetail";
+import Loading from "../../Component/Loading";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-const CURRENCY_API_KEY = process.env.REACT_APP_CURRENCY_API;
 
-function Country() {
+function CountryList() {
   const params = useParams();
   const [Icountry, setIcountry] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -39,8 +40,10 @@ function Country() {
       const response = await axios.get(
         `http://apis.data.go.kr/1262000/OverviewGnrlInfoService/getOverviewGnrlInfoList?serviceKey=${API_KEY}&cond[country_nm::EQ]=${params.id}`
       );
-      setIcountry(response.data);
-      setLoading();
+      if (response) {
+        setIcountry(response.data);
+        setLoading(false);
+      }
     } catch (e) {
       console.log("Country Info Error");
     }
@@ -132,13 +135,13 @@ function Country() {
     }
   }
 
-  return (
-    <div>
-      <Header />
-      <Indicator />
-      {loading ? (
-        <div>Loading</div>
-      ) : (
+  if (loading) {
+    return <Loading />;
+  } else {
+    return (
+      <div>
+        <Header />
+        <Indicator />
         <div className={styles.box}>
           <div className={styles.container}>
             <div className={styles["country-top"]}>
@@ -150,23 +153,31 @@ function Country() {
             <hr />
             <CountryMap props={alarmlevel} />
             <hr />
-            <RecommendCity />
-            <hr />
             <CountryInfo iprops={Icountry} cprop={alarmlevel} />
             <hr />
-            <CountryCurrency sprop={params} />
+            <div className={styles["country-detail"]}>
+              <CountryCurrency sprop={params} />
+              <AlarmDetail alarm={alarmlevel} />
+              <AlarmDetail alarm={alarmlevel} />
+            </div>
+            <hr />
+            <RecommendCity />
+            <hr />
           </div>
           <p className={styles.exdata} style={{ fontSize: "10px" }}>
             *제공되는 모든 정보는 공공데이터포털을 통해 제공되는 데이터를
             이용했습니다.
           </p>
         </div>
-      )}
-    </div>
-  );
+        <footer>
+          <h1>FOOTER</h1>
+        </footer>
+      </div>
+    );
+  }
 }
 
-export default Country;
+export default CountryList;
 
 function RecommendCity() {
   function CityLayerHover({ num, city, text }) {
@@ -178,7 +189,7 @@ function RecommendCity() {
         </div>
         <hr />
         <div>
-          <p>소개 텍스트</p>
+          <p>Introduction</p>
         </div>
       </span>
     );
@@ -186,22 +197,31 @@ function RecommendCity() {
   return (
     <div className={styles["country-city"]}>
       <div className={styles["city-table"]}>
+        <h1>Place to Go</h1>
         <table>
           <tbody>
             <tr>
               <td>
                 <CityLayerHover num={"01"} city={"Seoul"} />
+                <img src="https://i.pinimg.com/564x/51/b5/d1/51b5d1ea4bb7637c8265738fab51b979.jpg" />
+                <h3>Seoul</h3>
               </td>
               <td>
                 <CityLayerHover num={"02"} city={"Paris"} />
+                <img src="https://i.pinimg.com/564x/c8/43/b1/c843b1a2cdc681da7216073828d5aaa3.jpg" />
+                <h3>Paris</h3>
               </td>
             </tr>
             <tr>
               <td>
                 <CityLayerHover num={"03"} city={"NewYork"} />
+                <img src="https://i.pinimg.com/564x/55/05/c9/5505c945aad0ebdd2f12498bdcff7e6d.jpg" />
+                <h3>NewYork</h3>
               </td>
               <td>
                 <CityLayerHover num={"04"} city={"Tokyo"} />
+                <img src="https://i.pinimg.com/564x/2b/41/45/2b4145328a4b15d08d263a256d410783.jpg" />
+                <h3>Tokyo</h3>
               </td>
             </tr>
           </tbody>

@@ -1,5 +1,5 @@
 .container {
-  padding: 120px 0 60px;
+  padding: 6% 0 60px;
   height: 100%;
 }
 
@@ -7,10 +7,10 @@
 
 .block-first-img {
   position: relative;
-  height: 70vh;
+  height: 80vh;
   width: 80%;
   background-color: #802045;
-  margin: 30px auto;
+  margin: 1% auto;
 }
 
 .block-first-img img {
@@ -171,10 +171,34 @@
 }
 
 .random-title {
+  display: flex;
   width: max-content;
   margin: 0 0 2vh 10vw;
   font-size: 1.2vw;
   color: var(--color-teal);
+}
+
+.random-title p {
+  margin: 0;
+}
+
+.random-title button {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 10px;
+  border: 0;
+  background-color: #00000000;
+  fill: var(--color-hunter);
+}
+
+.random-title button:active {
+  transform: rotate(180deg);
+  transition: all 0.1s;
+}
+
+.random-title svg {
+  width: 20px;
+  height: 20px;
 }
 
 .ul-random {
@@ -215,12 +239,16 @@
 }
 
 /*------------------*/
-/*-----Random------*/
+
 footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 20vh;
   background-color: var(--color-hunter);
   color: var(--color-tomato);
 }
+/*-----Random------*/
 /*------------------*/
 .visualbox {
   display: flex;

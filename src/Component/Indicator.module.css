@@ -30,9 +30,6 @@
   margin: 0 0 10px 0;
 }
 
-.indicator-history {
-}
-
 .history-button {
   border: 0;
   background-color: #00000000;
@@ -50,4 +47,22 @@
 
 .history-content a:hover {
   color: #fff;
+}
+
+.indicator-top {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: -20%;
+  height: 3vh;
+  width: 5vw;
+  border-radius: 15px;
+  background-color: var(--color-tomato);
+}
+
+.indicator-top svg {
+  height: 2vh;
+  width: 2vw;
+  fill: #fff;
 }

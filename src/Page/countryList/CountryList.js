@@ -1,9 +1,7 @@
-import { useState } from "react";
 import React from "react";
-import { useLocation } from "react-router-dom";
-import Header from "../Object/Header";
-import Indicator from "../Object/Indicator";
-import ListCountry from "../Component/ListCountry";
+import Header from "../../Component/Header";
+import Indicator from "../../Component/Indicator";
+import ListCountry from "./ListCountry";
 
 function Asia() {
   return (

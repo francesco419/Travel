@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Indicator.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { ReactComponent as UpArrow } from "../image/up_arrow.svg";
 
 export default function Indicator() {
   const [click, setClick] = useState(false);
@@ -8,6 +9,7 @@ export default function Indicator() {
     const doc = document.getElementById("indicator");
     window.addEventListener("scroll", (e) => {
       doc.style.top = `${window.pageYOffset + 200}px`;
+      document.getElementById("header").style.opacity = "0.9";
     });
   };
 
@@ -53,6 +55,9 @@ export default function Indicator() {
       >
         {click ? "-" : `+`}
       </button>
+      <div className={styles["indicator-top"]}>
+        <UpArrow />
+      </div>
     </div>
   );
 }

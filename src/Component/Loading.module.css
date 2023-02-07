@@ -1,0 +1,50 @@
+.loading-circle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-circle div {
+  display: flex;
+}
+
+.loading-circle p {
+  margin: 30px 0;
+  font-size: 1.5vw;
+  cursor: pointer;
+  color: var(--color-hunter);
+}
+
+.loading-circle span {
+  display: block;
+  width: 2vw;
+  height: 4vh;
+  margin: 0 20px;
+  background-color: #d73a31;
+}
+
+.loading-circle span:first-child {
+  animation: jump 1s 0.8s linear infinite;
+}
+.loading-circle span:nth-child(2) {
+  animation: jump 1s 0.9s linear infinite;
+}
+.loading-circle span:last-child {
+  animation: jump 1s 1s linear infinite;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-100px);
+  }
+  40%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+}

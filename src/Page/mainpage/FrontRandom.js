@@ -1,17 +1,22 @@
-import styles from "../Page/MainPage.module.css";
+import styles from "./MainPage.module.css";
 import { useNavigate } from "react-router-dom";
-import { Countries } from "../data/DataInfo";
+import { Countries } from "../../data/DataInfo";
+import { ReactComponent as Reload } from "../../image/reload.svg";
+import { useState } from "react";
 
 export default function FrontRandom() {
+  const [reset, setReset] = useState(false);
   const nav = useNavigate();
-  console.log(Countries);
   return (
     <div className={styles["random"]}>
       <hr />
       <div className={styles["block-random"]}>
-        <p className={styles["random-title"]}>
-          Random Countries Sorted by Continents
-        </p>
+        <div className={styles["random-title"]}>
+          <p>Random Countries Sorted by Continents</p>
+          <button onClick={() => setReset((reset) => !reset)}>
+            <Reload />
+          </button>
+        </div>
         <ul className={styles["ul-random"]}>
           {Countries.map((temp, index) => {
             let arr = [];

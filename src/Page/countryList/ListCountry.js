@@ -1,5 +1,5 @@
-import { Countries } from "../data/DataInfo";
-import styles from "../Page/Asia.module.css";
+import { Countries } from "../../data/DataInfo";
+import styles from "./Asia.module.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 

@@ -1,6 +1,6 @@
-import styles from "../Page/Country.module.css";
+import styles from "./Country.module.css";
 
-export default function CountryInfo({ iprops }) {
+export default function CountryInfo({ iprops, cprop }) {
   const splitter = (cap, lang) => {
     let temp;
     if ((lang === null) & (cap === null)) {
@@ -11,7 +11,7 @@ export default function CountryInfo({ iprops }) {
         return temp[0];
       } else {
         temp = lang.split(",");
-        return `${temp[0]} 외 ${temp.length}개`;
+        return `${temp[0]} 외 ${temp.length - 1}개`;
       }
     }
   };
@@ -46,7 +46,7 @@ export default function CountryInfo({ iprops }) {
   return (
     <div className={styles.info}>
       <div className={styles["country-flag"]}>
-        <img src="https://i.pinimg.com/564x/3e/50/30/3e5030b69e0f34e886110dd019afd55a.jpg" />
+        <img src={cprop.data[0].flag_download_url} />
       </div>
       <div>
         <Infobox text="나라명" data={iprops.data[0].country_nm} />

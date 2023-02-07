@@ -1,16 +1,16 @@
-import Header from "../Object/Header";
+import Header from "../../Component/Header";
 import styles from "./MainPage.module.css";
-import { ReactComponent as Africa } from "../image/28615.svg";
-import { ReactComponent as Europe } from "../image/151641.svg";
-import { ReactComponent as Austr } from "../image/151644.svg";
-import { ReactComponent as America } from "../image/311014.svg";
-import { ReactComponent as Asia } from "../image/151642.svg";
+import { ReactComponent as Africa } from "../../image/28615.svg";
+import { ReactComponent as Europe } from "../../image/151641.svg";
+import { ReactComponent as Austr } from "../../image/151644.svg";
+import { ReactComponent as America } from "../../image/311014.svg";
+import { ReactComponent as Asia } from "../../image/151642.svg";
 import { useState } from "react";
-import FrontImage from "../Component/FrontImage";
-import Indicator from "../Object/Indicator";
-import Recommend from "../Component/Recommend";
-import FrontInfo from "../Component/FrontInfo";
-import FrontRandom from "../Component/FrontRandom";
+import FrontImage from "./FrontImage";
+import Indicator from "../../Component/Indicator";
+import Recommend from "./Recommend";
+import FrontInfo from "./FrontInfo";
+import FrontRandom from "./FrontRandom";
 import { Link } from "react-router-dom";
 
 function MainPage() {
@@ -77,7 +77,7 @@ function MainPage() {
           </div> */}
       </div>
       <footer>
-        <div>FOOTER</div>
+        <h1>FOOTER</h1>
       </footer>
       {/* )} */}
     </div>

@@ -1,19 +1,19 @@
-import { Timer } from "../data/class";
-import styles from "../Page/MainPage.module.css";
-import { useEffect, useState } from "react";
-import { mainImage } from "../data/NavItem";
+import { Timer } from "../../data/class";
+import styles from "./MainPage.module.css";
+import { useState } from "react";
+import { mainImage } from "../../data/NavItem";
 
 export default function FrontImage() {
   const [num, setNum] = useState(0);
   const arr = [0, 1, 2, 3];
 
-  /* const timeout = new Timer(() => {
+  const timeout = new Timer(() => {
     if (num === arr.length - 1) {
       setNum((num) => 0);
       return;
     }
     setNum((num) => num + 1);
-  }, 4000); */
+  }, 4000);
 
   return (
     <div className={styles["main-first"]}>
@@ -21,10 +21,10 @@ export default function FrontImage() {
       <div
         className={styles["block-first-img"]}
         onMouseOver={() => {
-          //timeout.pause();
+          timeout.pause();
         }}
         onMouseLeave={() => {
-          //timeout.resume();
+          timeout.resume();
         }}
       >
         <img src={mainImage[num].url} />
@@ -45,7 +45,6 @@ export default function FrontImage() {
           ))}
         </ul>
       </div>
-      <hr />
     </div>
   );
 }

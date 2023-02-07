@@ -1,14 +1,13 @@
 import styles from "./Header.module.css";
 import { useState } from "react";
-import Dropdown from "../Component/Dropdown";
-import searchicon from "../image/searchicon.png";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import Dropdown from "./Dropdown";
+import { useNavigate } from "react-router-dom";
 import { AllCountry } from "../data/DataInfo";
 import { ReactComponent as Search } from "../image/search.svg";
 
 function Header({}) {
   return (
-    <div className={styles.container}>
+    <div id="header" className={styles.container}>
       <nav className={styles.fullbar}>
         <div className={styles["header-box"]}>
           <HeaderLogo />
@@ -65,32 +64,43 @@ function HeaderMenu() {
     setDropdown(true);
   }; */
 
+  const menuHover = (e) => {
+    const doc = document.getElementById("menuhover");
+    doc.style.left = `${e.target.offsetLeft - 10}px`;
+    doc.style.height = `${e.target.offsetHeight}px`;
+  };
+
   return (
     <ul id="res" className={styles.section}>
+      <ol id="menuhover"></ol>
       <ol
-        onClick={() => navi(`/Asia`)}
+        onClick={() => navi(`/CountryList`)}
         /* onMouseEnter={() => setDropdown(true)}
         onMouseLeave={() => setDropdown(false)}
         onClick={down} */
+        onMouseOver={(e) => menuHover(e)}
       >
         <li className={styles.menuli}>
           <p>대륙</p>
         </li>
         {/* {dropdown && <Dropdown />} */}
       </ol>
-      <ol>
+      <ol
+        onClick={() => navi(`/CountryList`)}
+        onMouseOver={(e) => menuHover(e)}
+      >
+        <li className={styles.menuli}>
+          <p>검색</p>
+        </li>
+      </ol>
+      <ol onMouseOver={(e) => menuHover(e)}>
         <li className={styles.menuli}>
           <p>작업중</p>
         </li>
       </ol>
-      <ol>
+      <ol onMouseOver={(e) => menuHover(e)}>
         <li className={styles.menuli}>
-          <p>작업중</p>
-        </li>
-      </ol>
-      <ol>
-        <li className={styles.menuli}>
-          <p>문의</p>
+          <p>제작이야기</p>
         </li>
       </ol>
     </ul>

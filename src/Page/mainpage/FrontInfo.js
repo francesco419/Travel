@@ -1,4 +1,4 @@
-import styles from "../Page/MainPage.module.css";
+import styles from "./MainPage.module.css";
 
 export default function FrontInfo() {
   const imgArr = [
