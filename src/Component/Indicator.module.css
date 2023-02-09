@@ -3,6 +3,9 @@
   top: 20vh;
   right: 2vw;
   height: 20vh;
+  max-width: 5vw;
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
   transition: all 1s;
   background-color: var(--color-cerilean);
   border-radius: 15px;
@@ -11,6 +14,7 @@
 .indicator {
   height: 18vh;
   padding: 10px 0 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -36,7 +40,11 @@
 }
 
 .history-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   margin: 10px 0;
 }
@@ -51,8 +59,14 @@
 
 .indicator-top {
   position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   bottom: -20%;
   height: 3vh;

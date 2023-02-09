@@ -477,3 +477,7 @@ if (state === undefined) {
 - 공공데이터포털을 통한 나라별 기본정보의 데이터 부실로 다른 데이터 모색
   - https://rapidapi.com/natkapral/api/countries-cities/ 의 데이터가 적합하나 영어베이스.
 - redux 필요성.
+
+# 3.2.3 (23.02.09)
+
+- 벤더 프리픽스 적용.

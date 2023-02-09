@@ -13,8 +13,14 @@
 }
 
 .header-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   max-width: 60vw;
   margin: 0 auto;
@@ -25,19 +31,31 @@
 }
 
 .header-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
 .header-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   text-decoration: none;
   font-size: 20px;
 }
 
 .title_link {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   text-decoration: none;
   font-size: 20px;
@@ -57,7 +75,11 @@
 
 .section {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -77,6 +99,8 @@
   top: 0;
   display: inline;
   background-color: var(--color-teal);
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
   transition: all 0.5s;
   z-index: 2;
 }
@@ -96,7 +120,11 @@
 /*-----검색창-----*/
 
 .search_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   height: 40px;
   border: 1px solid;
@@ -109,6 +137,26 @@
   margin: 0 15px;
   background-color: #ffffff00;
   color: #fff;
+}
+
+.search_input::-webkit-input-placeholder {
+  color: #f8f0f2;
+  font-weight: 900;
+}
+
+.search_input::-moz-placeholder {
+  color: #f8f0f2;
+  font-weight: 900;
+}
+
+.search_input:-ms-input-placeholder {
+  color: #f8f0f2;
+  font-weight: 900;
+}
+
+.search_input::-ms-input-placeholder {
+  color: #f8f0f2;
+  font-weight: 900;
 }
 
 .search_input::placeholder {
@@ -127,125 +175,4 @@
 
 button[type="submit"]:active {
   background-color: #55152f;
-}
-
-@media screen and (max-width: 767px) {
-  .fullbar {
-    position: relative;
-    margin: 0;
-    padding: 0 20px;
-  }
-
-  .reposive_button {
-    display: block;
-    border: 0;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #802045;
-    color: #ffffff;
-  }
-  .reposive_button:hover {
-    background-color: #55152f;
-  }
-
-  .section {
-    display: none;
-    position: absolute;
-    flex-direction: column;
-    align-items: center;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background-color: #802045;
-    border-top: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
-  }
-
-  .tableul {
-    width: 100%;
-    height: 70px;
-  }
-
-  .name {
-    height: 40px;
-  }
-
-  .menuli {
-    width: 95%;
-  }
-
-  .history {
-    flex-wrap: wrap;
-    height: auto;
-  }
-
-  .history_content {
-    flex-wrap: wrap;
-    margin: 3px 5px;
-    min-height: 18px;
-  }
-  .search_box {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .fullbar {
-    position: relative;
-    margin: 0;
-    padding: 0 20px;
-    max-width: none;
-  }
-  .reposive_button {
-    display: block;
-    border: 0;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #802045;
-    color: #ffffff;
-  }
-  .reposive_button:hover {
-    background-color: #55152f;
-  }
-
-  .section {
-    display: none;
-    position: absolute;
-    flex-direction: column;
-    align-items: center;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background-color: #802045;
-    border-top: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
-  }
-
-  .tableul {
-    width: 100%;
-    height: 70px;
-    margin: 0;
-  }
-
-  .name {
-    height: 40px;
-  }
-
-  .menuli {
-    margin: 0 auto;
-    width: 90%;
-  }
-
-  .history {
-    flex-wrap: wrap;
-    height: auto;
-  }
-
-  .history_content {
-    flex-wrap: wrap;
-    margin: 3px 5px;
-    min-height: 18px;
-  }
 }

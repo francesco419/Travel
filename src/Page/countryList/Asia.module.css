@@ -5,9 +5,18 @@ div {
 /*new*/
 
 .list-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   margin: 130px 0 0 0;
   padding: 0 20px 100px;
@@ -15,7 +24,11 @@ div {
 }
 
 .block-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -40,7 +53,10 @@ div {
   margin: 0 20px;
 }
 .block-list div {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   max-width: 50%;
   padding: 0 20px;
@@ -69,12 +85,20 @@ div {
 }
 
 .cover {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   height: 500px;
   min-width: 900px;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   text-align: center;
 }
@@ -82,7 +106,12 @@ div {
   font-size: 24px;
 }
 .Country_Container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 .Country_Link {
@@ -150,34 +179,4 @@ div {
 }
 .button_C:hover .button_link {
   color: #f8f0f2;
-}
-
-@media screen and (max-width: 767px) {
-  .container {
-    margin: 110px 0 0 0;
-  }
-  .box {
-    min-width: 0;
-    width: auto;
-    height: auto;
-  }
-  .change_C {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .alpha {
-    width: 115px;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .container {
-    margin: 110px 0 0 0;
-  }
-  .box {
-    min-width: 0;
-    width: auto;
-    height: auto;
-  }
 }

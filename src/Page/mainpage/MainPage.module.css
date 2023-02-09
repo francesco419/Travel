@@ -22,6 +22,8 @@
   position: absolute;
   top: 50%;
   left: 3%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   padding: 0;
 }
@@ -58,8 +60,13 @@
 }
 
 .block-second ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   width: 90%;
   margin: 0 auto;
@@ -85,11 +92,15 @@
 }
 
 .block-second ol:hover li:nth-child(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
 .block-second li:nth-child(2) {
   display: none;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   position: absolute;
   top: 0;
@@ -109,7 +120,11 @@
 
 /*-----commentation------*/
 .commentation {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 .block-commentation {
@@ -132,8 +147,15 @@
 }
 
 .block-commentation-comment {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   padding: 40px 0;
   margin: 0 0 0 40px;
@@ -153,6 +175,8 @@
 .block-commentation-goto {
   border-radius: 30px;
   background-color: var(--color-teal);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   padding: 2px 20px;
   margin: 20px 0;
@@ -171,7 +195,11 @@
 }
 
 .random-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   margin: 0 0 2vh 10vw;
   font-size: 1.2vw;
@@ -183,7 +211,11 @@
 }
 
 .random-title button {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   margin: 0 0 0 10px;
   border: 0;
@@ -192,7 +224,11 @@
 }
 
 .random-title button:active {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
+  -webkit-transition: all 0.1s;
+  -o-transition: all 0.1s;
   transition: all 0.1s;
 }
 
@@ -202,11 +238,15 @@
 }
 
 .ul-random {
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   margin: 0 auto;
 }
 
 .ul-random ol {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   list-style: none;
   font-size: 1rem;
@@ -241,8 +281,14 @@
 /*------------------*/
 
 footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   height: 20vh;
   background-color: var(--color-hunter);
@@ -251,14 +297,20 @@ footer {
 /*-----Random------*/
 /*------------------*/
 .visualbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: relative;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   width: 1000px;
   height: 600px;
   margin: 0 auto;
   border: 10px double #f8f0f2;
   border-radius: 15px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   background-color: #802045;
 }
@@ -291,8 +343,14 @@ footer {
 }
 
 .viewAllbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
   text-align: center;
   margin: 0 auto;
@@ -311,8 +369,15 @@ footer {
 }
 
 .link_svg {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   font-size: 25px;
   text-decoration: none;
